@@ -83,6 +83,7 @@ namespace 撈金魚
                     startFish(2500);
                 else
                     startFish(300);
+                Thread.Sleep(50);
                 getFish();
                 Thread.Sleep(50);
                 endFish();
@@ -97,7 +98,6 @@ namespace 撈金魚
             DoInput.mouseClickForMole(window.rect, 788, 443);
             Thread.Sleep(delay);
             DoInput.mouseClickForMole(window.rect, 474, 485);
-            Thread.Sleep(delay);
         }
 
         private void buyFatNutrientButton(object sender, RoutedEventArgs e)
