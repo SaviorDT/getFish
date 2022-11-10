@@ -145,7 +145,7 @@ namespace 撈金魚
             while (clicking) { }
             clicking = true;
             mouseClickForWindow(rect, x, y);
-            Thread.Sleep(20);
+            Thread.Sleep(60);
             mouseClickForMole(rect, MainWindow.BUCKET_NET_X, MainWindow.BUCKET_NET_Y);
             clicking = false;
             while (clicking) { }
