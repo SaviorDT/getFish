@@ -113,7 +113,7 @@ namespace 撈金魚
                 mouseInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_MOVE;
 
             SendInput(1, ref mouseInput, Marshal.SizeOf(new INPUT()));
-            Thread.Sleep(80);
+            Thread.Sleep(140);
 
             mouseInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_LEFTDOWN;
             SendInput(1, ref mouseInput, Marshal.SizeOf(new INPUT()));

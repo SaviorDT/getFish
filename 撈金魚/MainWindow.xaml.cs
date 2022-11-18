@@ -165,7 +165,7 @@ namespace 撈金魚
         {
             for(int i=0; i<25; i++)
             {
-                Thread.Sleep(500);
+                Thread.Sleep(150);
                 Point net_center;
                 do
                 {
