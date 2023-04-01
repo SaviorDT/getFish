@@ -1,36 +1,19 @@
-﻿using FastBitmapLib;
-using Gma.System.MouseKeyHook;
+﻿using Gma.System.MouseKeyHook;
+using Hazdryx.Drawing;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using WindowsInput;
 using WindowsInput.Native;
-using static 撈金魚.AnalyzeNet;
+using 撈金魚.ActionPerform;
+using 撈金魚.ActionPerform.ElementKnight;
+using 撈金魚.Analyzer;
+using static 撈金魚.ActionPerform.ButtonPerformer;
 using Application = System.Windows.Application;
-using Color = System.Drawing.Color;
-using Cursor = System.Windows.Forms.Cursor;
-using Image = System.Drawing.Image;
-using MessageBox = System.Windows.MessageBox;
 using Point = System.Drawing.Point;
-using Size = System.Drawing.Size;
 
 namespace 撈金魚
 {
@@ -39,190 +22,98 @@ namespace 撈金魚
     /// </summary>
     public partial class MainWindow : Window
     {
-        GetProgramWindow window = new GetProgramWindow("flashplayer_32_sa");
-        public const int MOLE_W = 960, MOLE_H = 560, BUCKET_NET_X = 150, BUCKET_NET_Y = -10, BUCKET_WATER_X = 235, BUCKET_WATER_Y = 415, NET_FIX_X = 50, NET_FIX_Y = 45;
+        readonly GetProgramWindow window = new("flashplayer_32_sa");
 
-        private void playFishButton(object sender, RoutedEventArgs e)
+        private void PlayFishButton(object sender, RoutedEventArgs e)
         {
-            window.updateRect();
-            new Thread(playFish).Start();
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.fish);
         }
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeGlobalHook();
+
+            //debugger.Text = Convert.ToString(window.processes.Length);
+        }
+
+        private void ClosingAction(object sender, CancelEventArgs e)
+        {
+            //the default closing action may not actually stop the program.
+            //It only close the window and work in background until your threads are done.
+            Environment.Exit(0);
         }
 
         private void InitializeGlobalHook()
         {
             IKeyboardMouseEvents hook = Hook.GlobalEvents();
             //hook.MouseUpExt += mouseUp;
-            hook.KeyUp += exit;
+            hook.KeyUp += Exit;
         }
 
-        private void exit(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void Exit(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyCode.Equals(Keys.Escape))
+            if (e.KeyCode.Equals(Keys.Back) && e.Modifiers == Keys.Control)
                 Environment.Exit(0);
         }
 
-        private void playFish()
+        private void BuyFatNutrientButton(object sender, RoutedEventArgs e)
         {
-            int count = 0;
-            Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-            {
-                count = Convert.ToInt32(input.Text);
-            }
-            );
-            for (int i=0; i<count; i++)
-            {
-                removeOneTime();
-                Thread.Sleep(10);
-                if (i == 0) 
-                    startFish(2500);
-                else
-                    startFish(300);
-                Thread.Sleep(50);
-                getFish();
-                Thread.Sleep(50);
-                endFish();
-            }
-            goRestaurant();
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.buy_nutrient);
         }
 
-        private void startFish(int delay)
+        private void ElementKnightButton(object sender, RoutedEventArgs e)
         {
-            DoInput.mouseClickForMole(window.rect, 838, 32);
-            Thread.Sleep(delay);
-            DoInput.mouseClickForMole(window.rect, 788, 443);
-            Thread.Sleep(delay);
-            DoInput.mouseClickForMole(window.rect, 474, 485);
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.play_element_knight);
         }
 
-        private void buyFatNutrientButton(object sender, RoutedEventArgs e)
+
+        //private void RemoveOneTime()
+        //{
+        //    Application.Current.Dispatcher.Invoke((ThreadStart)delegate
+        //    {
+        //        input.Text = Convert.ToString(Convert.ToInt32(input.Text) - 1);
+        //    });
+        //}
+
+        private int GetLoopTimes()
         {
-            window.updateRect();
-            new Thread(buyFatButrient).Start();
+            if(input.Text.Length == 0) return 0;
+            return Convert.ToInt32(input.Text);
         }
 
-        private void buyFatButrient()
+        private void ElementKnightKitButton(object sender, RoutedEventArgs e)
         {
-            int count = 0;
-            Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-            {
-                count = Convert.ToInt32(input.Text);
-            }
-            );
-            openShopSlot();
-            for (int i = 0; i < count; i++)
-            {
-                removeOneTime();
-                buy_99_nutrient();
-            }
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.element_knight_kit);
         }
 
-        private void buy_99_nutrient()
+        private void DragonButton(object sender, RoutedEventArgs e)
         {
-            InputSimulator input = new InputSimulator();
-
-            DoInput.mouseClickForMole(window.rect, 583, 276);
-            Thread.Sleep(50);
-            DoInput.mouseClickForMole(window.rect, 378, 302);
-            input.Keyboard.KeyPress(VirtualKeyCode.NUMPAD9);
-            Thread.Sleep(20);
-            input.Keyboard.KeyPress(VirtualKeyCode.DELETE);
-            Thread.Sleep(20);
-            input.Keyboard.KeyPress(VirtualKeyCode.NUMPAD9);
-            Thread.Sleep(20);
-            //key_input(9,del, 9)
-            DoInput.mouseClickForMole(window.rect, 527, 341);
-            Thread.Sleep(20);
-            DoInput.mouseClickForMole(window.rect, 479, 358);
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.dragon);
         }
 
-        private void openShopSlot()
-        {
-            DoInput.mouseClickForMole(window.rect, 785, 527);
-            Thread.Sleep(1000);
-            DoInput.mouseClickForMole(window.rect, 278, 251);
-            Thread.Sleep(50);
-            DoInput.mouseClickForMole(window.rect, 427, 232);
-        }
+        //public void addText(string s)
+        //{
+        //    Application.Current.Dispatcher.Invoke((ThreadStart)delegate
+        //    {
+        //        input.Text += s + "\n";
+        //    }
+        //    );
+        //}
 
-        private void endFish()
-        {
-            DoInput.mouseClickForMole(window.rect, 480, 358);
-        }
-
-        private void goRestaurant()
-        {
-            DoInput.mouseClickForMole(window.rect, 880, 538);
-            DoInput.mouseClickForMole(window.rect, 880, 449);
-        }
-
-        private void getFish()
-        {
-            for(int i=0; i<25; i++)
-            {
-                Thread.Sleep(150);
-                Point net_center;
-                do
-                {
-                    Point[] fish = findDiferences();
-                    if (fish.Length == 7)
-                        return;
-                    net_center = AnalyzeNet.CalculateBestPoint(fish, window.rect, this);
-                } while (net_center.X == -1);
-                DoInput.fishClickKit(window.rect, net_center.X + NET_FIX_X*MOLE_W/window.rect.width, net_center.Y + NET_FIX_Y*MOLE_H / window.rect.height);
-            }
-        }
-
-        private Point[] findDiferences()
-        {
-            Point[] fish = ScreenAction.GetFish(window);
-            if (fish.Length < 3)
-            {
-                DateTime start = DateTime.Now;
-                while (fish.Length < 3)
-                {
-                    if (DateTime.Now - start >= TimeSpan.FromSeconds(5))
-                    {
-                        return new Point[7];
-                    }
-                    fish = ScreenAction.GetFish(window);
-                }
-            }
-
-            return fish;
-        }
-
-        private void removeOneTime()
-        {
-            Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-            {
-                input.Text = Convert.ToString(Convert.ToInt32(input.Text)-1);
-            }
-            );
-        }
-
-        public void addText(string s)
-        {
-            Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-            {
-                input.Text += s + "\n";
-            }
-            );
-        }
-
-        public void addNum(int num)
-        {
-            Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-            {
-                input.Text = Convert.ToString(Convert.ToInt32(input.Text) + num);
-            }
-            );
-        }
+        //public void AddNum(int num)
+        //{
+        //    Application.Current.Dispatcher.Invoke((ThreadStart)delegate
+        //    {
+        //        input.Text = Convert.ToString(Convert.ToInt32(input.Text) + num);
+        //    }
+        //    );
+        //}
 
         //public void addText(string s)
         //{

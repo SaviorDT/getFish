@@ -5,12 +5,84 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:撈金魚"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Closing="ClosingAction"  >
     <Grid>
         <ScrollViewer HorizontalAlignment="Center" Margin="0,53,0,0" VerticalAlignment="Top" Width="649" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <TextBox x:Name="input" TextWrapping="Wrap" FontSize="36"/>
         </ScrollViewer>
-        <Button Content="撈金魚" HorizontalAlignment="Left" Margin="97,130,0,0" VerticalAlignment="Top" Height="33" Width="69" Click="playFishButton"/>
-        <Button Content="買99營養液" HorizontalAlignment="Left" Height="33" Margin="198,130,0,0" VerticalAlignment="Top" Width="74" Click="buyFatNutrientButton"/>
+        <Button HorizontalAlignment="Left" Margin="97,130,0,0" VerticalAlignment="Top" Height="33" Width="69" Click="PlayFishButton">
+            撈金魚
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>
+                        只計算成功次數<LineBreak/>
+                        建議要撈之前重開遊戲，讓遊戲不會卡，成功率較高<LineBreak/>
+                        <LineBreak/>
+                        在任何地方都能使用，只要滑鼠能點到右上角的莊園回憶錄
+                    </TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <Button HorizontalAlignment="Left" Height="33" Margin="198,130,0,0" VerticalAlignment="Top" Width="74" Click="BuyFatNutrientButton">
+            買99營養液
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>
+                        因為技術限制，使用時摩爾莊園會跑到最上層<LineBreak/>
+                        <LineBreak/>
+                        在肥肥館主畫面使用即可
+                    </TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <Button HorizontalAlignment="Left" Margin="306,130,0,0" VerticalAlignment="Top" Height="33" Width="85" Click="ElementKnightButton">
+            元素騎士戰鬥
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>
+                        獲勝戰敗都算一次<LineBreak/>
+                        <LineBreak/>
+                        需要開啟想要打的副本
+                    </TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <TextBlock Margin="0,0,46,36" TextWrapping="Wrap" Text="滑鼠放在按鈕上有提示" FontSize="20" HorizontalAlignment="Right" Width="214" Height="36" VerticalAlignment="Bottom" Focusable="False" IsHitTestVisible="False"/>
+        <Button Content="元素騎士套組" HorizontalAlignment="Left" Margin="425,130,0,0" VerticalAlignment="Top" Height="33" Width="91" Click="ElementKnightKitButton">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>
+                        1.無盡深淵75次<LineBreak/>
+                        2.莎士摩亞10次<LineBreak/>
+                        3.回復體力<LineBreak/>
+                        4.莎士摩亞24次<LineBreak/>
+                        5.回復體力<LineBreak/>
+                        6.莎士摩亞7次<LineBreak/>
+                        7.挑戰小惡魔23次<LineBreak/>
+                        <LineBreak/>
+                        在任何地方都能使用，只要滑鼠能點到右下角的地盤
+                    </TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <Button Content="龍之幻境" HorizontalAlignment="Left" Margin="550,130,0,0" VerticalAlignment="Top" Height="33" Width="78" Click="DragonButton">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>
+                        次數頁數位置<LineBreak/>
+                        左上為1<LineBreak/>
+                        右上為2<LineBreak/>
+                        中間為3<LineBreak/>
+                        左下為4<LineBreak/>
+                        右下為5<LineBreak/>
+                        舉例：2011就是打比格獸20次<LineBreak/>
+                        2011的意思是，20次，第一頁，左上<LineBreak/>
+                        只計算勝利<LineBreak/>
+                        點龍之幻境，不要點確定，然後就可以使用本按鈕了
+                    </TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
     </Grid>
 </Window>
