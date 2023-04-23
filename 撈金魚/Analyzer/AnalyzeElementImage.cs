@@ -19,7 +19,7 @@ namespace 撈金魚.Analyzer
             {
                 foreach (int y in ys)
                 {
-                    if (!ImageDetermine.IsWhite(shot, x, y))
+                    if (!ColorDetermine.TestColorForMole(shot, -1, x, y))
                     {
                         return false;
                     }
