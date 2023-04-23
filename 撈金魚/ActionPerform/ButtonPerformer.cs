@@ -32,7 +32,7 @@ namespace 撈金魚.ActionPerform
             {
                 Action<WindowSource, int> action_fun = get_action_fun(action);
                 
-                for (int i = 0; i < windows.processes.Length; i++)
+                for (int i = 0; i < windows.Processes.Length; i++)
                 {
                     int tmp = i;
                     new Thread(() => {

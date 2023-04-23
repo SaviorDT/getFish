@@ -12,23 +12,23 @@ namespace 撈金魚.structures
 
             public WindowSource(GetProgramWindow window, int index)
             {
-                Process = window.processes[index];
+                Process = window.Processes[index];
                 WindowRect = window.Rects_of_client[index];
             }
         }
     }
-    public struct WindowRect
+    internal struct WindowRect
     {
-        public int left;
-        public int top;
-        public int right;
-        public int bottom;
-        public bool is_enable;
+        internal int left;
+        internal int top;
+        internal int right;
+        internal int bottom;
+        internal bool is_enable;
 
-        public int Width { get { return right - left; } }
-        public int Height { get { return bottom - top; } }
-        public Size Size { get { return new Size(Width, Height); } }
-        public System.Drawing.Point Content_to_client { get { return new System.Drawing.Point(left, top); } }
-        public Rectangle Content_rectangle { get { return new Rectangle(Content_to_client, Size); } }
+        internal int Width { get { return right - left; } }
+        internal int Height { get { return bottom - top; } }
+        internal Size Size { get { return new Size(Width, Height); } }
+        internal System.Drawing.Point Content_to_client { get { return new System.Drawing.Point(left, top); } }
+        internal Rectangle Content_rectangle { get { return new Rectangle(Content_to_client, Size); } }
     }
 }

@@ -38,7 +38,7 @@ namespace 撈金魚.ActionPerform
             PlayElementKnight(window, 7);
 
             ElementKnightPlayer.GoLastDungeon(window);
-            PlayElementKnight(window, 31);
+            PlayElementKnight(window, 19);
         }
         internal static void PlayElementKnight(WindowSource window, int times)
         {

@@ -26,8 +26,10 @@ namespace 撈金魚.ActionPerform.ElementKnight
 
         internal static void GoLastDungeon(WindowSource window)
         {
-            GoDungeon(window, 1, 0);
-            MouseInput.MouseClickForMole(window, 174, 380);
+            GoDungeon(window, 4, 1);
+            MouseInput.MouseClickForMole(window, 236, 208);
+            Thread.Sleep(200);
+            MouseInput.MouseClickForMole(window, 473, 378);
             Thread.Sleep(10000);
         }
 
@@ -93,7 +95,7 @@ namespace 撈金魚.ActionPerform.ElementKnight
                 Thread.Sleep(50);
             }
             MouseInput.MouseClickForMole(source, x[slot % 2], y[slot / 2]);
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
         }
     }
 }

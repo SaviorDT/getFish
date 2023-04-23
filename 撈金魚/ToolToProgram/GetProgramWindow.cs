@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Windows.Markup;
 using 撈金魚.structures;
 using 撈金魚.ToolToProgram;
 
@@ -7,22 +8,24 @@ namespace 撈金魚
     internal class GetProgramWindow
     {
 
-        public readonly Process[] processes;
-        public WindowRect[] Rects_of_client { get; private set; }
+        private readonly string process_name;
+        internal Process[] Processes { get; private set; }
+        internal WindowRect[] Rects_of_client { get; private set; }
 
         public GetProgramWindow(string process_name)
         {
-            processes = Process.GetProcessesByName(process_name);
-            processes = Validate_processes(processes);
+            this.process_name = process_name;
             UpdateRect();
         }
         public void UpdateRect()
         {
-            Rects_of_client = ProgramAttributes.GetContentRect(processes);
+            Processes = Process.GetProcessesByName(process_name);
+            Processes = Validate_processes(Processes);
+            Rects_of_client = ProgramAttributes.GetContentRect(Processes);
         }
         public void UpdateRect(int index)
         {
-            Rects_of_client[index] = ProgramAttributes.GetContentRect(processes[index]);
+            Rects_of_client[index] = ProgramAttributes.GetContentRect(Processes[index]);
             //AnalyzeNet.refreshRadius(100 * rect.width / MainWindow.MOLE_W);
         }
 
