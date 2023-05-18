@@ -46,7 +46,7 @@ namespace 撈金魚.Analyzer
                 }
             }
 
-            return ColorDetermine.IsWhite(color);
+            return ColorDetermine.IsWhite(color) || ColorDetermine.IsTransparent(color);
         }
 
         internal static bool SelectingServer(FastBitmap img)

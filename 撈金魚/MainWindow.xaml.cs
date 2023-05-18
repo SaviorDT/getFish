@@ -101,7 +101,7 @@ namespace 撈金魚
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            new structures.WindowPack.WindowSource(window, 0).ReOpen();
+            //new structures.WindowPack.WindowSource(window, 0).ReOpen();
         }
 
         //public void addText(string s)
