@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using 撈金魚.structures;
 using static 撈金魚.GetProgramWindow;
 using static 撈金魚.structures.WindowPack;
@@ -13,19 +14,13 @@ namespace 撈金魚.Analyzer
 {
     internal class ImageDetermine
     {
-        public static bool IsWhite(FastBitmap shot, int x, int y)
-        {
-            return IsWhite(shot.GetI(x, y));
-            // white or transparent
-        }
-        public static bool IsWhite(int color)
-        {
-            return (color == -1) || ((color & 0xff000000) == 0);
-            // white or transparent
-        }
         public static bool FishEnded(FastBitmap fastBitmap, WindowRect rect)
         {
-            (int x, int y) = ProgramPointTranslator.MoleToContent(rect, 260, 547);
+            return IsMainFrame(fastBitmap);
+        }
+        internal static bool IsMainFrame(FastBitmap fastBitmap)
+        {
+            (int x, int y) = ProgramPointTranslator.MoleToContent(fastBitmap.Width, fastBitmap.Height, 260, 547);
 
             return fastBitmap.GetI(x, y) == -1 || fastBitmap.GetI(x, y) == -3487030;
         }
@@ -51,7 +46,25 @@ namespace 撈金魚.Analyzer
                 }
             }
 
-            return ImageDetermine.IsWhite(color);
+            return ColorDetermine.IsWhite(color);
+        }
+
+        internal static bool SelectingServer(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -8559, 478, 247)//(RGB)=(255, 222, 145)
+                && ColorDetermine.TestColorForMole(img, -791, 497, 474);//255, 252, 233
+        }
+
+        internal static bool CanOpenLoginPage(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -276736, 613, 447)//(RGB)=(251, 199, 0)
+                && ColorDetermine.TestColorForMole(img, -14079658, 242, 176);//41, 41, 86
+        }
+
+        internal static bool SelectingAccount(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -1, 245, 323)//(RGB)=(255, 255, 255)
+                && ColorDetermine.TestColorForMole(img, -71490, 107, 82);//254, 232, 190
         }
     }
 }

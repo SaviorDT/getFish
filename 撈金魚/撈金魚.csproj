@@ -67,12 +67,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ActionPerform\ButtonPerformer.cs" />
-    <Compile Include="ActionPerform\Common.cs" />
+    <Compile Include="ActionPerform\Common\Click.cs" />
     <Compile Include="ActionPerform\Dragon.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightActionPerformer.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightPlayer.cs" />
     <Compile Include="ActionPerform\FatHouse\BuyNutrient.cs" />
     <Compile Include="ActionPerform\GoldenFish.cs" />
+    <Compile Include="ActionPerform\Common\Wait.cs" />
+    <Compile Include="ActionPerform\Login.cs" />
     <Compile Include="Analyzer\AnalyzeContentRect.cs" />
     <Compile Include="Analyzer\AnalyzeDragon.cs" />
     <Compile Include="Analyzer\AnalyzeElementImage.cs" />
@@ -80,11 +82,14 @@
     <Compile Include="Analyzer\ColorDetermine.cs" />
     <Compile Include="Analyzer\ImageDetermine.cs" />
     <Compile Include="structures\Point.cs" />
+    <Compile Include="ToolToProgram\MoleProgram.cs" />
     <Compile Include="ToolToProgram\ProgramAttributes.cs" />
     <Compile Include="ToolToProgram\ProgramPointTranslator.cs" />
     <Compile Include="ToolToProgram\ScreenAction.cs" />
     <Compile Include="structures\WindowPack.cs" />
     <Compile Include="ToolToProgram\SimpleProgramAction.cs" />
+    <Compile Include="UserInterface\Message.cs" />
+    <Compile Include="UserInterface\UserInput.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

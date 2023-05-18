@@ -9,7 +9,7 @@ using static 撈金魚.structures.WindowPack;
 
 namespace 撈金魚.ActionPerform
 {
-    internal class Common
+    internal class Click
     {
         public static void GoRestaurant(WindowSource window)
         {
@@ -46,12 +46,6 @@ namespace 撈金魚.ActionPerform
                 x -= 100;
             }
             MouseInput.MouseClickForMole(source, x, y);
-        }
-        internal static void ShowMessageToUser(string message)
-        {
-            string caption = "提示";
-            //MessageBoxButton buttons = MessageBoxButton.OK;
-            MessageBox.Show(message, caption);
         }
     }
 }

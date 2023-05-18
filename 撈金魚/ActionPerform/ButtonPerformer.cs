@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using 撈金魚.ActionPerform.FatHouse;
+using 撈金魚.UserInterface;
 using static 撈金魚.structures.WindowPack;
 
 namespace 撈金魚.ActionPerform
@@ -38,7 +39,7 @@ namespace 撈金魚.ActionPerform
                     new Thread(() => {
                         actioning++;
                         action_fun(new WindowSource(windows, tmp), times);
-                        Common.GoRestaurant(new WindowSource(windows, tmp));
+                        Click.GoRestaurant(new WindowSource(windows, tmp));
                         actioning--;
                         }).Start();
                 }
@@ -66,10 +67,7 @@ namespace 撈金魚.ActionPerform
 
         private static void RejectAction()
         {
-            string message = "正在執行動作中...\n請勿重複按按鈕";
-            string caption = "提示";
-            //MessageBoxButton buttons = MessageBoxButton.OK;
-            MessageBox.Show(message, caption);
+            Message.ShowMessageToUser("正在執行中\n請勿重複按按鈕");
         }
     }
 }

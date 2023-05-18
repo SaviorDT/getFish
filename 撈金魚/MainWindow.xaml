@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:撈金魚"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        Closing="ClosingAction"  >
+        Closing="ClosingAction"
+        FocusManager.FocusedElement="{Binding ElementName=input}">
     <Grid>
         <ScrollViewer HorizontalAlignment="Center" Margin="0,53,0,0" VerticalAlignment="Top" Width="649" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <TextBox x:Name="input" TextWrapping="Wrap" FontSize="36"/>
+            <TextBox x:Name="input" TextWrapping="Wrap" FontSize="36" AutomationProperties.HelpText="在這裡輸入數字等參數"/>
         </ScrollViewer>
-        <Button HorizontalAlignment="Left" Margin="97,130,0,0" VerticalAlignment="Top" Height="33" Width="69" Click="PlayFishButton">
+        <Button HorizontalAlignment="Left" Margin="97,130,0,0" VerticalAlignment="Top" Height="33" Width="69" Click="PlayFishButton" AutomationProperties.HelpText="撈金魚，撈你輸入的次數，在主畫面使用即可">
             撈金魚
             <Button.ToolTip>
                 <ToolTip>
@@ -24,7 +25,7 @@
                 </ToolTip>
             </Button.ToolTip>
         </Button>
-        <Button HorizontalAlignment="Left" Height="33" Margin="198,130,0,0" VerticalAlignment="Top" Width="74" Click="BuyFatNutrientButton">
+        <Button HorizontalAlignment="Left" Height="33" Margin="198,130,0,0" VerticalAlignment="Top" Width="74" Click="BuyFatNutrientButton" AutomationProperties.HelpText="買99乘以你輸入次數的營養液，在肥肥館可直接使用，不用打開商店">
             買99營養液
             <Button.ToolTip>
                 <ToolTip>
@@ -36,7 +37,7 @@
                 </ToolTip>
             </Button.ToolTip>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="306,130,0,0" VerticalAlignment="Top" Height="33" Width="85" Click="ElementKnightButton">
+        <Button HorizontalAlignment="Left" Margin="306,130,0,0" VerticalAlignment="Top" Height="33" Width="85" Click="ElementKnightButton" AutomationProperties.HelpText="自動元素騎士戰鬥你輸入的次數，要打開你想打的副本才能使用">
             元素騎士戰鬥
             <Button.ToolTip>
                 <ToolTip>
@@ -49,7 +50,7 @@
             </Button.ToolTip>
         </Button>
         <TextBlock Margin="0,0,46,36" TextWrapping="Wrap" Text="滑鼠放在按鈕上有提示" FontSize="20" HorizontalAlignment="Right" Width="214" Height="36" VerticalAlignment="Bottom" Focusable="False" IsHitTestVisible="False"/>
-        <Button Content="元素騎士套組" HorizontalAlignment="Left" Margin="425,130,0,0" VerticalAlignment="Top" Height="33" Width="91" Click="ElementKnightKitButton">
+        <Button Content="元素騎士套組" HorizontalAlignment="Left" Margin="425,130,0,0" VerticalAlignment="Top" Height="33" Width="91" Click="ElementKnightKitButton" AutomationProperties.HelpText="作者自用，會使用兩罐體力藥劑，分別挑戰無盡深淵、莎士摩亞、以及扣扣">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock>
@@ -66,7 +67,7 @@
                 </ToolTip>
             </Button.ToolTip>
         </Button>
-        <Button Content="龍之幻境" HorizontalAlignment="Left" Margin="550,130,0,0" VerticalAlignment="Top" Height="33" Width="78" Click="DragonButton">
+        <Button Content="龍之幻境" HorizontalAlignment="Left" Margin="550,130,0,0" VerticalAlignment="Top" Height="33" Width="78" Click="DragonButton" AutomationProperties.HelpText="自動挑戰指定次數的龍之幻境，輸入方法為挑戰次數、頁數、編號，數字要直接連在一起，編號排序方法為由左到右，由上至下。點擊紫色傳送門後不要按確定，即可使用本按鈕。">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock>
@@ -84,5 +85,6 @@
                 </ToolTip>
             </Button.ToolTip>
         </Button>
+        <Button Content="test" HorizontalAlignment="Left" Margin="198,337,0,0" VerticalAlignment="Top" Height="35" Width="109" Click="Button_Click" AutomationProperties.HelpText="作者測試用，別點"/>
     </Grid>
 </Window>

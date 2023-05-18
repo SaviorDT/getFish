@@ -11,6 +11,7 @@ using WindowsInput.Native;
 using 撈金魚.ActionPerform;
 using 撈金魚.ActionPerform.ElementKnight;
 using 撈金魚.Analyzer;
+using 撈金魚.ToolToProgram;
 using static 撈金魚.ActionPerform.ButtonPerformer;
 using Application = System.Windows.Application;
 using Point = System.Drawing.Point;
@@ -95,6 +96,12 @@ namespace 撈金魚
         {
             window.UpdateRect();
             ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.dragon);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            window.UpdateRect();
+            new structures.WindowPack.WindowSource(window, 0).ReOpen();
         }
 
         //public void addText(string s)

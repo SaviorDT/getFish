@@ -11,7 +11,7 @@ namespace 撈金魚.Analyzer
 {
     internal class AnalyzeContentRect
     {
-        public static WindowRect Remove_white_area(WindowRect rect, FastBitmap shot)
+        public static WindowRect Remove_white_area(WindowRect rect, FastBitmap shot, bool check_white_edge)
         {
             if ((rect.left | rect.top) != 0)
             {
@@ -26,15 +26,23 @@ namespace 撈金魚.Analyzer
             int hmid = left + rect.Width / 2;
             int vmid = top + rect.Height / 2;
 
-            while (ImageDetermine.IsWhite(shot, right, vmid) && left < right) right--;
-            while (ImageDetermine.IsWhite(shot, hmid, bottom) && top < bottom) bottom--;
-            while (ImageDetermine.IsWhite(shot, left, vmid) && left < right) left++;
-            while (ImageDetermine.IsWhite(shot, hmid, top) && (top < bottom)) top++;
+            while (ColorDetermine.IsTransparent(shot, right, vmid) && left < right) right--;
+            while (ColorDetermine.IsTransparent(shot, hmid, bottom) && top < bottom) bottom--;
+            while (ColorDetermine.IsTransparent(shot, left, vmid) && left < right) left++;
+            while (ColorDetermine.IsTransparent(shot, hmid, top) && (top < bottom)) top++;
 
-            while (!ImageDetermine.AllLineWhite(right + 1, rect.top, right + 1, rect.bottom - 1, shot)) right++;
-            while (!ImageDetermine.AllLineWhite(left - 1, rect.top, left - 1, rect.bottom - 1, shot)) left--;
-            while (!ImageDetermine.AllLineWhite(rect.left, bottom + 1, rect.right - 1, bottom + 1, shot)) bottom++;
-            while (!ImageDetermine.AllLineWhite(rect.left, top - 1, rect.right - 1, top - 1, shot)) top--;
+            if (check_white_edge)
+            {
+                while (ColorDetermine.IsWhite(shot, right, vmid) && left < right) right--;
+                while (ColorDetermine.IsWhite(shot, hmid, bottom) && top < bottom) bottom--;
+                while (ColorDetermine.IsWhite(shot, left, vmid) && left < right) left++;
+                while (ColorDetermine.IsWhite(shot, hmid, top) && (top < bottom)) top++;
+
+                while (!ImageDetermine.AllLineWhite(right + 1, rect.top, right + 1, rect.bottom - 1, shot)) right++;
+                while (!ImageDetermine.AllLineWhite(left - 1, rect.top, left - 1, rect.bottom - 1, shot)) left--;
+                while (!ImageDetermine.AllLineWhite(rect.left, bottom + 1, rect.right - 1, bottom + 1, shot)) bottom++;
+                while (!ImageDetermine.AllLineWhite(rect.left, top - 1, rect.right - 1, top - 1, shot)) top--;
+            }
 
             WindowRect toReturn = new()
             {

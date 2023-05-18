@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using 撈金魚.Analyzer;
+using 撈金魚.UserInterface;
 using static 撈金魚.structures.WindowPack;
 
 namespace 撈金魚.ActionPerform
@@ -30,7 +31,7 @@ namespace 撈金魚.ActionPerform
                     return;
                 }
                 find_slot_not_proper = true;
-                Common.ShowMessageToUser("位置必須介於1~5之間");
+                Message.ShowMessageToUser("位置必須介於1~5之間");
                 Thread.Sleep(10);
                 find_slot_not_proper = false;
                 return;
@@ -92,7 +93,7 @@ namespace 撈金魚.ActionPerform
 
                     if (AnalyzeElementImage.FindEndFrame(shot))
                     {
-                        Common.ClickNormalConfirmButton(window);
+                        Click.ClickNormalConfirmButton(window);
                     }
 
                     shot.Dispose();
@@ -133,7 +134,7 @@ namespace 撈金魚.ActionPerform
 
         private static void StartDragon(WindowSource source)
         {
-            Common.ClickNormalYesNoDialog(source, true);
+            Click.ClickNormalYesNoDialog(source, true);
             Thread.Sleep(1000);
             MouseInput.MouseClickForMole(source, 633, 494);
         }
@@ -171,7 +172,7 @@ namespace 撈金魚.ActionPerform
 
         private static void CloseLootFrame(WindowSource source)
         {
-            Common.ClickNormalConfirmButton(source);
+            Click.ClickNormalConfirmButton(source);
             MouseInput.MouseClickForMole(source, 484, 429);
             Thread.Sleep(50);
             MouseInput.MouseClickForMole(source, 484, 450);

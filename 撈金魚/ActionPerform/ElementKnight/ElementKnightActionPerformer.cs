@@ -57,7 +57,7 @@ namespace 撈金魚.ActionPerform
                     Thread.Sleep(50);
                 }
 
-                Common.ClickNormalConfirmButton(window, 2);
+                Click.ClickNormalConfirmButton(window, 2);
                 //Slept in ClickNormalConfirmButton
                 ClickElementKnightGetCardButton(window);
                 Thread.Sleep(30);

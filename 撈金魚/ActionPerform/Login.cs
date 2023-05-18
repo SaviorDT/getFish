@@ -1,0 +1,63 @@
+﻿using Hazdryx.Drawing;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using 撈金魚.Analyzer;
+using 撈金魚.structures;
+
+namespace 撈金魚.ActionPerform
+{
+    internal class Login
+    {
+        internal static void ClickLoginButton(WindowPack.WindowSource window)
+        {
+            MouseInput.MouseClickForMole(window, 483, 495);
+        }
+
+        internal static void LoginAccount(WindowPack.WindowSource window)
+        {
+            MouseInput.MouseClickForMole(window, 483, 495);
+            while (SelectingAccount(window))
+            {
+                MouseInput.MouseClickForMole(window, 483, 495);
+                Thread.Sleep(1000);
+            }
+        }
+
+        private static bool SelectingAccount(WindowPack.WindowSource window)
+        {
+            FastBitmap shot = ScreenAction.GetContentShot(window);
+            bool result = ImageDetermine.SelectingAccount(shot);
+            shot.Dispose();
+            return result;
+        }
+
+        internal static void SelectServer(WindowPack.WindowSource window)
+        {
+            MouseInput.MouseClickForMole(window, 316, 158);
+        }
+
+        internal static void WaitForLogin(WindowPack.WindowSource window)
+        {
+            Wait.WaitFor(window, ImageDetermine.CanOpenLoginPage);
+        }
+
+        internal static void WaitForSelectAccount(WindowPack.WindowSource window)
+        {
+            Wait.WaitFor(window, ImageDetermine.SelectingAccount);
+        }
+
+        internal static void WaitForSelectServer(WindowPack.WindowSource window)
+        {
+            Wait.WaitFor(window, ImageDetermine.SelectingServer);
+        }
+
+        internal static void WaitMainWindow()
+        {
+            Thread.Sleep(1000);
+        }
+    }
+}

@@ -61,7 +61,7 @@ namespace 撈金魚.ActionPerform
             if (AnalyzeFishImage.FishSucessed(source))
             {
                 complete_times++;
-                Common.ClickNormalConfirmButton(source);
+                Click.ClickNormalConfirmButton(source);
             }
             //DoInput.MouseClickForMole(source, 480, 358);
         }

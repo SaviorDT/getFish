@@ -55,9 +55,9 @@ namespace 撈金魚.ActionPerform.ElementKnight
             int[] x = { 518, 581, 644 }, y = { 188, 251, 315, 384 };
             MouseInput.MouseClickForMole(source, x[slot % 3], y[slot / 3]);
             Thread.Sleep(50);
-            Common.ClickNormalYesNoDialog(source, true);
+            Click.ClickNormalYesNoDialog(source, true);
             Thread.Sleep(100);
-            Common.ClickNormalConfirmButton(source);
+            Click.ClickNormalConfirmButton(source);
             Thread.Sleep(50);
         }
 
@@ -73,7 +73,7 @@ namespace 撈金魚.ActionPerform.ElementKnight
         }
         private static void OpenElementKnight(WindowSource source)
         {
-            Common.PressMyDomain(source);
+            Click.PressMyDomain(source);
             MouseInput.MouseClickForMole(source, 875, 275);
         }
         private static void ClickActivyty(WindowSource source)

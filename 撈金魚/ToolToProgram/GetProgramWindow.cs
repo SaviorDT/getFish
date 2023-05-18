@@ -23,11 +23,11 @@ namespace 撈金魚
             Processes = Validate_processes(Processes);
             Rects_of_client = ProgramAttributes.GetContentRect(Processes);
         }
-        public void UpdateRect(int index)
-        {
-            Rects_of_client[index] = ProgramAttributes.GetContentRect(Processes[index]);
-            //AnalyzeNet.refreshRadius(100 * rect.width / MainWindow.MOLE_W);
-        }
+        //public void UpdateRect(int index)
+        //{
+        //    Rects_of_client[index] = ProgramAttributes.GetContentRect(Processes[index]);
+        //    //AnalyzeNet.refreshRadius(100 * rect.width / MainWindow.MOLE_W);
+        //}
 
         private Process[] Validate_processes(Process[] processes)
         {

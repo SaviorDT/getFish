@@ -31,15 +31,19 @@ namespace 撈金魚.ToolToProgram
 
             return toReturn;
         }
-        public static WindowRect GetContentRect(Process process)
+        public static WindowRect GetContentRect(Process process, bool check_white_edge = true)
         {
             WindowRect toReturn = new();
+            if(process == null)
+            {
+                toReturn.is_enable = false;
+                toReturn.top = toReturn.bottom  = toReturn.left = toReturn.right = 0;
+                return toReturn;
+            }
             GetClientRect(process.MainWindowHandle, ref toReturn);
             FastBitmap client_shot = new(ScreenAction.GetClientImage(process.MainWindowHandle, toReturn));
-
-            toReturn = AnalyzeContentRect.Remove_white_area(toReturn, client_shot);
+            toReturn = AnalyzeContentRect.Remove_white_area(toReturn, client_shot, check_white_edge);
             toReturn.is_enable = (toReturn.Width & toReturn.Height) != 0;
-
             client_shot.Dispose();
 
             return toReturn;

@@ -27,8 +27,8 @@ namespace 撈金魚.Analyzer
                 {
                     if(ColorDetermine.TestColor(shot, -256, x, y))
                     {
-                        //// There may be tow side of stone slab is -256
-                        //// 
+                        // There may be tow side of stone slab is -256
+                        // 
                         //int[,] yellows = SearchConnectedColor(shot, -256, x, y);
                         //return FindMidPointOfThirdLine(yellows);
                         //shot.Save(String.Format("{0}.{1}.png", x, y));
