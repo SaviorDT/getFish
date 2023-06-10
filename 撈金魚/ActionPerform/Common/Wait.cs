@@ -31,5 +31,27 @@ namespace 撈金魚.ActionPerform
                 Thread.Sleep(1000);
             }
         }
+
+        internal static void WaitForNormalYesNoDialog(WindowPack.WindowSource window)
+        {
+            WaitFor(window, ImageDetermine.FindNormalYesNoDialog);
+        }
+
+        internal static void WaitForMainMapOpen(WindowPack.WindowSource window)
+        {
+            WaitFor(window, ImageDetermine.MainMapOpen);
+        }
+
+        internal static void WaitForBlackForestMapOpen(WindowPack.WindowSource window)
+        {
+            WaitFor(window, ImageDetermine.BlackForestMapOpen);
+        }
+
+        internal static void WaitForPlaceChange(WindowPack.WindowSource window)
+        {
+            WaitFor(window, (FastBitmap img) => {
+                return !ImageDetermine.LoadingScene(img) && ImageDetermine.IsMainFrame(img);
+                });
+        }
     }
 }

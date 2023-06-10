@@ -29,6 +29,11 @@ namespace 撈金魚.Analyzer
         {
             return IsWhite(shot.GetI(x, y));
         }
+        internal static bool IsWhiteForMole(FastBitmap bmp, int x, int y)
+        {
+            (x, y) = ProgramPointTranslator.MoleToContent(bmp.Width, bmp.Height, x, y);
+            return IsWhite(bmp.GetI(x, y));
+        }
         internal static bool IsWhite(int color)
         {
             return color == -1;

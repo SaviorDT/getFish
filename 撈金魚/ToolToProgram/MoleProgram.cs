@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using 撈金魚.ActionPerform;
@@ -14,6 +15,9 @@ namespace 撈金魚.ToolToProgram
 {
     internal class MoleProgram
     {
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
+
         private const string MOLE_WEBSITE = "http://mole.61.com.tw/Client.swf";
         private static string flashplayer = "flashplayer_32_sa.exe";
 
@@ -28,12 +32,21 @@ namespace 撈金魚.ToolToProgram
             Wait.WaitForMainWindow(window);
         }
 
-        internal static Process ReOpenMole()
+        internal static Process ReOpenMole(Process process)
         {
             Process mole = null;
             try
             {
-                mole = Process.Start(flashplayer, MOLE_WEBSITE);
+                //mole = Process.Start(flashplayer, MOLE_WEBSITE);
+                ProcessStartInfo info = new(flashplayer, MOLE_WEBSITE)
+                {
+                    WindowStyle = ProcessWindowStyle.Minimized
+                };//use this function will cause the program show less time on the screen
+                // then directly use Process.Start(...) without WindowStyle argument.
+                mole = Process.Start(info);
+                mole.WaitForInputIdle();
+                SimpleProgramAction.SetForegroundWindowFromMinimized(mole);
+                SimpleProgramAction.SetWindowToButtom(mole);
             }
             catch (Exception e) when(e is InvalidOperationException || e is Win32Exception)
             {

@@ -38,8 +38,9 @@ namespace 撈金魚.ActionPerform
                     int tmp = i;
                     new Thread(() => {
                         actioning++;
-                        action_fun(new WindowSource(windows, tmp), times);
-                        Click.GoRestaurant(new WindowSource(windows, tmp));
+                        WindowSource window = new(windows, tmp);
+                        action_fun(window, times);
+                        Click.GoRestaurant(window);
                         actioning--;
                         }).Start();
                 }
@@ -48,21 +49,15 @@ namespace 撈金魚.ActionPerform
 
         private static Action<WindowSource, int> get_action_fun(ActionKit action)
         {
-            switch (action)
+            return action switch
             {
-                case ActionKit.fish:
-                    return GoldenFish.PlayFish;
-                case ActionKit.play_element_knight:
-                    return ElementKnightActionPerformer.PlayElementKnight;
-                case ActionKit.buy_nutrient:
-                    return BuyNutrient.BuyFatNutrient;
-                case ActionKit.element_knight_kit:
-                    return ElementKnightActionPerformer.ElementKnightKit;
-                case ActionKit.dragon:
-                    return Dragon.PlayDragon;
-                default:
-                    throw new ArgumentException("action invalid");
-            }
+                ActionKit.fish => GoldenFish.PlayFish,
+                ActionKit.play_element_knight => ElementKnightActionPerformer.PlayElementKnight,
+                ActionKit.buy_nutrient => BuyNutrient.BuyFatNutrient,
+                ActionKit.element_knight_kit => ElementKnightActionPerformer.ElementKnightKit,
+                ActionKit.dragon => Dragon.PlayDragon,
+                _ => throw new ArgumentException("action invalid"),
+            };
         }
 
         private static void RejectAction()

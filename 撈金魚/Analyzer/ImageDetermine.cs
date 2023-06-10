@@ -63,8 +63,35 @@ namespace 撈金魚.Analyzer
 
         internal static bool SelectingAccount(FastBitmap img)
         {
-            return ColorDetermine.TestColorForMole(img, -1, 245, 323)//(RGB)=(255, 255, 255)
+            return ColorDetermine.IsWhiteForMole(img, 245, 323)//(RGB)=(255, 255, 255)
                 && ColorDetermine.TestColorForMole(img, -71490, 107, 82);//254, 232, 190
+        }
+
+        internal static bool FindNormalYesNoDialog(FastBitmap img)
+        {
+            return ColorDetermine.IsWhiteForMole(img, 388, 223)
+                && ColorDetermine.IsWhiteForMole(img, 582, 223)
+                && ColorDetermine.IsWhiteForMole(img, 479, 347);
+        }
+
+        internal static bool MainMapOpen(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -4694, 180, 26)//255, 237, 170
+            && ColorDetermine.IsWhiteForMole(img, 704, 23);
+        }
+
+        internal static bool BlackForestMapOpen(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -10138003, 576, 284)//101, 78, 109
+            && ColorDetermine.TestColorForMole(img, -14733809, 444, 529);//31, 46, 15
+        }
+
+        internal static bool LoadingScene(FastBitmap img)
+        {
+            return (ColorDetermine.TestColorForMole(img, -12013311, 368, 36)//72, 177, 1
+            && ColorDetermine.TestColorForMole(img, -3556708, 107, 82))//201, 186, 156
+            || (ColorDetermine.IsWhiteForMole(img, 489, 196)
+            && ColorDetermine.TestColorForMole(img, -71490, 107, 82));//254, 232, 190
         }
     }
 }

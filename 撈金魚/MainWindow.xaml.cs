@@ -9,8 +9,10 @@ using System.Windows.Forms;
 using WindowsInput;
 using WindowsInput.Native;
 using 撈金魚.ActionPerform;
+using 撈金魚.ActionPerform.Common;
 using 撈金魚.ActionPerform.ElementKnight;
 using 撈金魚.Analyzer;
+using 撈金魚.structures;
 using 撈金魚.ToolToProgram;
 using static 撈金魚.ActionPerform.ButtonPerformer;
 using Application = System.Windows.Application;
@@ -101,7 +103,14 @@ namespace 撈金魚
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
+            testFun(new structures.WindowPack.WindowSource(window, 0));
             //new structures.WindowPack.WindowSource(window, 0).ReOpen();
+        }
+
+        private void testFun(WindowPack.WindowSource window)
+        {
+            Thread.Sleep(1000);
+            window.ReOpen();
         }
 
         //public void addText(string s)

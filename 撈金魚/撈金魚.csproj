@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="ActionPerform\ButtonPerformer.cs" />
     <Compile Include="ActionPerform\Common\Click.cs" />
+    <Compile Include="ActionPerform\Common\MapMove.cs" />
     <Compile Include="ActionPerform\Dragon.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightActionPerformer.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightPlayer.cs" />

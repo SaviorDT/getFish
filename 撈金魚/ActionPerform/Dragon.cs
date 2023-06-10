@@ -3,12 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using 撈金魚.ActionPerform.Common;
 using 撈金魚.Analyzer;
 using 撈金魚.UserInterface;
+using static 撈金魚.ActionPerform.Common.MapMove;
 using static 撈金魚.structures.WindowPack;
 
 namespace 撈金魚.ActionPerform
@@ -37,18 +40,45 @@ namespace 撈金魚.ActionPerform
                 return;
             }
 
+            while(times > 0)
+            {
+                times -= PlayDragon(window, times, page, slot);
+                if (times > 0)
+                {
+                    LetDragonNotLag(window);
+                }
+            }
+        }
+
+        private static void LetDragonNotLag(WindowSource window)
+        {
+            window.ReOpen();
+            MapMove.MapMoveTo(new MapPlace(MapType.Black_Forest, (int)PlaceInBlackForest.VineForest), window);
+        }
+
+        private static int PlayDragon(WindowSource window, int times, int page, int slot)
+        {
+            DateTime start = DateTime.Now;
             StartDragon(window);
             Thread.Sleep(300);
             SelectPage(window, page);
-            for(int i=0; i < times;)
+            int play_count;
+            for (play_count = 0; play_count < times;)
             {
+                if (DateTime.Now - start > TimeSpan.FromMinutes(15))
+                {
+                    break;
+                }
+
                 SelectMob(window, slot);
                 Thread.Sleep(1000);
-                i += DragonFight(window) ? 1 : 0;
+                play_count += DragonFight(window) ? 1 : 0;
                 Thread.Sleep(300);
             }
             CloseDragon(window);
             Thread.Sleep(500);
+
+            return play_count;
         }
 
         private static bool DragonFight(WindowSource window)
@@ -134,6 +164,8 @@ namespace 撈金魚.ActionPerform
 
         private static void StartDragon(WindowSource source)
         {
+            MouseInput.MouseClickForMole(source, 823, 169);
+            Wait.WaitForNormalYesNoDialog(source);
             Click.ClickNormalYesNoDialog(source, true);
             Thread.Sleep(1000);
             MouseInput.MouseClickForMole(source, 633, 494);

@@ -27,7 +27,7 @@ namespace 撈金魚.structures
             {
                 Process.CloseMainWindow();
                 Process.Dispose();
-                Process = MoleProgram.ReOpenMole();
+                Process = MoleProgram.ReOpenMole(Process);
                 Login.WaitMainWindow();
                 UpdateRect(false);
                 MoleProgram.Login(this);
