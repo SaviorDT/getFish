@@ -93,5 +93,17 @@ namespace 撈金魚.Analyzer
             || (ColorDetermine.IsWhiteForMole(img, 489, 196)
             && ColorDetermine.TestColorForMole(img, -71490, 107, 82));//254, 232, 190
         }
+
+        internal static bool MemoryBookOpen(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -37964, 893, 485) // 255, 107, 180
+                || ColorDetermine.TestColorForMole(img, -69702, 379, 199); // 254, 239, 186
+        }
+
+        internal static bool FishGamePanelOpen(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -1126138, 740, 122) // 238, 209, 6
+                || ColorDetermine.TestColorForMole(img, -12500575, 849, 219); // 65, 65, 161
+        }
     }
 }

@@ -4,98 +4,154 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using 撈金魚.ActionPerform.Common;
+using 撈金魚.Analyzer;
 using static 撈金魚.structures.WindowPack;
 
 namespace 撈金魚.ActionPerform.ElementKnight
 {
-    internal class ElementKnightPlayer
+    internal class ElementKnightPlayer : GamePlayer
     {
-        internal static void GoInfiniteAbyss(WindowSource window)
+        public ElementKnightPlayer(WindowSource window, int times) : base(window, times)
         {
-            GoDungeon(window, 2, 1);
+        }
+        protected override void StartGame()
+        {
+            //Console.WriteLine(i);
+            StartElementKnightBattle();
+
+            //move mouse leave start button, or the button will change color
+            //and ImageDetermine.ElementKnightBattleEnd may not work.
+            MouseInput.MouseClickForContent(window, 0, 0);
+        }
+
+        protected override bool PlayGame()
+        {
+            Thread.Sleep(1000);
+            while (!ImageDetermine.ElementKnightBattleEnd(window))
+            {
+                Thread.Sleep(50);
+            }
+            return true;
+        }
+
+        protected override void StopGame()
+        {
+            Thread.Sleep(100);
+            Click.ClickNormalConfirmButton(window, 2);
+            //Slept in ClickNormalConfirmButton
+            ClickElementKnightGetCardButton();
+            Thread.Sleep(30);
+        }
+
+        protected override void GoToGameRegion() { }
+
+        protected override void LeaveGameRegion() 
+        {
+            CloseElementKnight();
+        }
+
+        protected void GoInfiniteAbyss()
+        {
+            GoDungeon(2, 1);
             MouseInput.MouseClickForMole(window, 477, 495);
             Thread.Sleep(5000);
         }
 
-        internal static void GoShakesMore(WindowSource window)
+        protected void GoShakesMore()
         {
-            GoDungeon(window, 2, 2);
-            PressShakesMore(window);
+            GoDungeon(2, 2);
+            PressShakesMore();
             Thread.Sleep(4000);
         }
 
-        internal static void GoLastDungeon(WindowSource window)
+        protected void GoLastDungeon()
         {
-            GoDungeon(window, 4, 1);
+            GoDungeon(4, 1);
             MouseInput.MouseClickForMole(window, 236, 208);
             Thread.Sleep(200);
             MouseInput.MouseClickForMole(window, 473, 378);
             Thread.Sleep(10000);
         }
 
-        internal static void UseTiliPotion(WindowSource window)
+        protected void UseTiliPotion()
         {
-            OpenElementKnight(window);
+            OpenElementKnight();
             Thread.Sleep(1000);
-            PressToolSlot(window);
+            PressToolSlot();
             Thread.Sleep(500);
-            UseTool(window, 0);
+            UseTool(0);
             Thread.Sleep(100);
-            CloseElementKnight(window);
+            CloseElementKnightBackpack();
             Thread.Sleep(100);
         }
 
-        private static void PressToolSlot(WindowSource source)
+        protected void PressToolSlot()
         {
-            MouseInput.MouseClickForMole(source, 717, 334);
+            MouseInput.MouseClickForMole(window, 717, 334);
         }
 
-        public static void UseTool(WindowSource source, int slot)
+        protected void UseTool(int slot)
         {
             int[] x = { 518, 581, 644 }, y = { 188, 251, 315, 384 };
-            MouseInput.MouseClickForMole(source, x[slot % 3], y[slot / 3]);
+            MouseInput.MouseClickForMole(window, x[slot % 3], y[slot / 3]);
             Thread.Sleep(50);
-            Click.ClickNormalYesNoDialog(source, true);
+            Click.ClickNormalYesNoDialog(window, true);
             Thread.Sleep(100);
-            Click.ClickNormalConfirmButton(source);
+            Click.ClickNormalConfirmButton(window);
             Thread.Sleep(50);
         }
 
-        private static void CloseElementKnight(WindowSource source)
+        protected void CloseElementKnightBackpack()
         {
-            MouseInput.MouseClickForMole(source, 445, 150);
+            MouseInput.MouseClickForMole(window, 445, 150);
         }
 
-        internal static void PressShakesMore(WindowSource source)
+        protected void PressShakesMore()
         {
-            MouseInput.MouseClickForMole(source, 526, 381);
+            MouseInput.MouseClickForMole(window, 526, 381);
             Thread.Sleep(500);
         }
-        private static void OpenElementKnight(WindowSource source)
+        protected void OpenElementKnight()
         {
-            Click.PressMyDomain(source);
-            MouseInput.MouseClickForMole(source, 875, 275);
+            Click.PressMyDomain(window);
+            MouseInput.MouseClickForMole(window, 875, 275);
         }
-        private static void ClickActivyty(WindowSource source)
+        protected void ClickActivyty()
         {
-            MouseInput.MouseClickForMole(source, 635, 124);
+            MouseInput.MouseClickForMole(window, 635, 124);
         }
-        private static void GoDungeon(WindowSource source, int pages, int slot)
+        protected void GoDungeon(int pages, int slot)
         {
             int[] x = { 410, 665 }, y = { 200, 408 };
-            OpenElementKnight(source);
+            OpenElementKnight();
             Thread.Sleep(1000);
-            ClickActivyty(source);
+            ClickActivyty();
             Thread.Sleep(50);
-            MouseInput.MouseClickForMole(source, 578, 246);
+            MouseInput.MouseClickForMole(window, 578, 246);
             Thread.Sleep(1000);
             for (int i = 1; i < pages; i++)
             {
-                MouseInput.MouseClickForMole(source, 512, 514);
+                MouseInput.MouseClickForMole(window, 512, 514);
                 Thread.Sleep(50);
             }
-            MouseInput.MouseClickForMole(source, x[slot % 2], y[slot / 2]);
+            MouseInput.MouseClickForMole(window, x[slot % 2], y[slot / 2]);
             Thread.Sleep(5000);
+        }
+
+        protected void ClickElementKnightGetCardButton()
+        {
+            MouseInput.MouseClickForMole(window, 480, 410);
+        }
+
+        protected void CloseElementKnight()
+        {
+            MouseInput.MouseClickForMole(window, 716, 90);
+        }
+
+        protected void StartElementKnightBattle()
+        {
+            MouseInput.MouseClickForMole(window, 480, 480);
         }
     }
 }

@@ -12,15 +12,22 @@ namespace 撈金魚.ActionPerform
 {
     internal class Wait
     {
-        internal static void WaitForMainWindow(WindowPack.WindowSource window)
+        internal static bool WaitForMainWindow(WindowPack.WindowSource window, int timeout = 10000)
         {
-            WaitFor(window, ImageDetermine.IsMainFrame);
+            return WaitFor(window, ImageDetermine.IsMainFrame, timeout);
         }
 
-        internal static void WaitFor(WindowPack.WindowSource window, Func<FastBitmap, bool> Satisfy)
+        internal static bool WaitFor(WindowPack.WindowSource window, Func<FastBitmap, bool> Satisfy, int timeout)
         {
+            DateTime out_time = DateTime.Now + TimeSpan.FromMilliseconds(timeout);
             while (true)
             {
+                //To use timeout, Some code should be modified first to handle timeout event.
+
+                //if(timeout > 0 && DateTime.Now > out_time)
+                //{
+                //    return false;
+                //}
                 FastBitmap shot = ScreenAction.GetContentShot(window);
                 if (Satisfy(shot))
                 {
@@ -30,28 +37,39 @@ namespace 撈金魚.ActionPerform
                 shot.Dispose();
                 Thread.Sleep(1000);
             }
+            return true;
         }
 
-        internal static void WaitForNormalYesNoDialog(WindowPack.WindowSource window)
+        internal static bool WaitForNormalYesNoDialog(WindowPack.WindowSource window, int timeout = 10000)
         {
-            WaitFor(window, ImageDetermine.FindNormalYesNoDialog);
+            return WaitFor(window, ImageDetermine.FindNormalYesNoDialog, timeout);
         }
 
-        internal static void WaitForMainMapOpen(WindowPack.WindowSource window)
+        internal static bool WaitForMainMapOpen(WindowPack.WindowSource window, int timeout = 10000)
         {
-            WaitFor(window, ImageDetermine.MainMapOpen);
+            return WaitFor(window, ImageDetermine.MainMapOpen, timeout);
         }
 
-        internal static void WaitForBlackForestMapOpen(WindowPack.WindowSource window)
+        internal static bool WaitForBlackForestMapOpen(WindowPack.WindowSource window, int timeout = 10000)
         {
-            WaitFor(window, ImageDetermine.BlackForestMapOpen);
+            return WaitFor(window, ImageDetermine.BlackForestMapOpen, timeout);
         }
 
-        internal static void WaitForPlaceChange(WindowPack.WindowSource window)
+        internal static bool WaitForPlaceChange(WindowPack.WindowSource window, int timeout = 10000)
         {
-            WaitFor(window, (FastBitmap img) => {
+            return WaitFor(window, (FastBitmap img) => {
                 return !ImageDetermine.LoadingScene(img) && ImageDetermine.IsMainFrame(img);
-                });
+                }, timeout);
+        }
+
+        internal static bool WaitForMemoryBook(WindowPack.WindowSource window, int timeout = 10000)
+        {
+            return WaitFor(window, ImageDetermine.MemoryBookOpen, timeout);
+        }
+
+        internal static bool WaitForFishGamePanel(WindowPack.WindowSource window, int timeout = 10000)
+        {
+            return WaitFor(window, ImageDetermine.FishGamePanelOpen, timeout);
         }
     }
 }

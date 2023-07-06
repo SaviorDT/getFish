@@ -14,6 +14,7 @@ using 撈金魚.ActionPerform.ElementKnight;
 using 撈金魚.Analyzer;
 using 撈金魚.structures;
 using 撈金魚.ToolToProgram;
+using 撈金魚.UserInterface;
 using static 撈金魚.ActionPerform.ButtonPerformer;
 using Application = System.Windows.Application;
 using Point = System.Drawing.Point;
@@ -109,8 +110,11 @@ namespace 撈金魚
 
         private void testFun(WindowPack.WindowSource window)
         {
-            Thread.Sleep(1000);
-            window.ReOpen();
+            //Thread.Sleep(1000);
+            //window.ReOpen();
+            CounterFrame f = new CounterFrame(ScreenAction.GetContentShot(window), 50);
+            f.Show();
+            f.FinishCount++;
         }
 
         //public void addText(string s)

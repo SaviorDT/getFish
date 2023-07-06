@@ -67,7 +67,7 @@
                 </ToolTip>
             </Button.ToolTip>
         </Button>
-        <Button Content="龍之幻境" HorizontalAlignment="Left" Margin="550,130,0,0" VerticalAlignment="Top" Height="33" Width="78" Click="DragonButton" AutomationProperties.HelpText="自動挑戰指定次數的龍之幻境，輸入方法為挑戰次數、頁數、編號，數字要直接連在一起，編號排序方法為由左到右，由上至下。點擊紫色傳送門後不要按確定，即可使用本按鈕。">
+        <Button Content="龍之幻境" HorizontalAlignment="Left" Margin="550,130,0,0" VerticalAlignment="Top" Height="33" Width="78" Click="DragonButton" AutomationProperties.HelpText="自動挑戰指定次數的龍之幻境，輸入方法為挑戰次數、頁數、編號，數字要直接連在一起，編號排序方法為由左到右，由上至下。在能點開主世界地圖的地方即可使用本按鈕。">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock>
@@ -80,7 +80,8 @@
                         舉例：2011就是打比格獸20次<LineBreak/>
                         2011的意思是，20次，第一頁，左上<LineBreak/>
                         只計算勝利<LineBreak/>
-                        點龍之幻境，不要點確定，然後就可以使用本按鈕了
+                        在大部分的地方都能使用，只要點開地圖是主世界地圖就好<LineBreak/>
+                        例如家園就能使用
                     </TextBlock>
                 </ToolTip>
             </Button.ToolTip>

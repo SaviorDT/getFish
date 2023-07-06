@@ -1,0 +1,24 @@
+﻿<Window x:Class="撈金魚.UserInterface.CounterFrame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:撈金魚.UserInterface"
+        mc:Ignorable="d"
+        Title="計數器" Height="450" Width="800">
+    <Grid>
+        <Button Content="顯示視窗" HorizontalAlignment="Left" Margin="26,38,0,0" VerticalAlignment="Top" Height="28" Width="64"/>
+        <Button Content="暫停" HorizontalAlignment="Left" Height="28" Margin="114,38,0,0" VerticalAlignment="Top" Width="64"/>
+        <Button Content="停止" HorizontalAlignment="Left" Height="28" Margin="205,38,0,0" VerticalAlignment="Top" Width="64" TabIndex="9"/>
+        <TextBox x:Name="counter" HorizontalAlignment="Left" Height="40" Margin="309,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="273" FontSize="24" ToolTip="次數記數" Focusable="False"/>
+        <Image x:Name="ImgDisplay" HorizontalAlignment="Center" Margin="0,96,0,0" VerticalAlignment="Top" Cursor="SizeAll" Stretch="Uniform" StretchDirection="Both" Panel.ZIndex="-1">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform/>
+                    <ScaleTransform/>
+                    <RotateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+    </Grid>
+</Window>

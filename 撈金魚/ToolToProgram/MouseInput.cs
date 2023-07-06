@@ -112,7 +112,7 @@ namespace 撈金魚
             clicking = true;
             int delay = 80;
             MouseClickForContent(source, x, y, delay);
-            MouseClickForMole(source, GoldenFish.BUCKET_NET_X, GoldenFish.BUCKET_NET_Y, delay);
+            MouseClickForMole(source, GoldenFishPlayer.BUCKET_NET_X, GoldenFishPlayer.BUCKET_NET_Y, delay);
             clicking = false;
             // I forgotten why I wrote the line bellow.
             //while (clicking) { }

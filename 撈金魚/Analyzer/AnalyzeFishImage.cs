@@ -20,6 +20,14 @@ namespace 撈金魚.Analyzer
         {
             FastBitmap shot = ScreenAction.GetContentShot(source);
             bool successed = AnalyzeElementImage.FindEndFrame(shot);
+
+            //code for debug
+            if (successed)
+            {
+                DateTime now = DateTime.Now;
+                shot.Save(now.Minute + "-" + now.Second + ".jpg");
+            }
+
             shot.Dispose();
             return successed;
         }
@@ -126,7 +134,7 @@ namespace 撈金魚.Analyzer
         {
             (int bucket_x, int bucket_y) = ProgramPointTranslator.MoleToContent(
                 shot[0].Width, shot[0].Height,
-                GoldenFish.BUCKET_NET_X, GoldenFish.BUCKET_NET_Y);
+                GoldenFishPlayer.BUCKET_NET_X, GoldenFishPlayer.BUCKET_NET_Y);
             //int bucket_x = MainWindow.BUCKET_WATER_X * shot[0].Width / MainWindow.MOLE_W;
             //int bucket_y = MainWindow.BUCKET_WATER_Y * shot[0].Height / MainWindow.MOLE_H;
 

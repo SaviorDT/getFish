@@ -13,15 +13,18 @@ namespace 撈金魚.structures
         {
             internal Process Process { get; private set; }
             internal WindowRect WindowRect { get; private set; }
+            internal bool IsEnable;
 
             internal WindowSource(GetProgramWindow window, int index)
             {
                 Process = window.Processes[index];
                 WindowRect = window.Rects_of_client[index];
+                IsEnable = WindowRect.is_enable;
             }
             internal void UpdateRect(bool checkWhiteArea = true)
             {
                 WindowRect = ProgramAttributes.GetContentRect(Process, checkWhiteArea);
+                IsEnable = WindowRect.is_enable;
             }
             internal void ReOpen()
             {

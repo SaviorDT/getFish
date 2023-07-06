@@ -40,19 +40,19 @@ namespace 撈金魚.ActionPerform
             MouseInput.MouseClickForMole(window, 316, 158);
         }
 
-        internal static void WaitForLogin(WindowPack.WindowSource window)
+        internal static void WaitForLogin(WindowPack.WindowSource window, int timeout = 10000)
         {
-            Wait.WaitFor(window, ImageDetermine.CanOpenLoginPage);
+            Wait.WaitFor(window, ImageDetermine.CanOpenLoginPage, timeout);
         }
 
-        internal static void WaitForSelectAccount(WindowPack.WindowSource window)
+        internal static void WaitForSelectAccount(WindowPack.WindowSource window, int timeout = 10000)
         {
-            Wait.WaitFor(window, ImageDetermine.SelectingAccount);
+            Wait.WaitFor(window, ImageDetermine.SelectingAccount, timeout);
         }
 
-        internal static void WaitForSelectServer(WindowPack.WindowSource window)
+        internal static void WaitForSelectServer(WindowPack.WindowSource window, int timeout = 10000)
         {
-            Wait.WaitFor(window, ImageDetermine.SelectingServer);
+            Wait.WaitFor(window, ImageDetermine.SelectingServer, timeout);
         }
 
         internal static void WaitMainWindow()
