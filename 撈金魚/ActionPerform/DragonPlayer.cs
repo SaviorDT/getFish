@@ -90,8 +90,9 @@ namespace 撈金魚.ActionPerform
         private void LetDragonNotLag()
         {
             window.ReOpen();
-            MapMove.MapMoveTo(new MapPlace(MapType.Black_Forest, (int)PlaceInBlackForest.VineForest), window);
-            start_time = DateTime.Now;
+            //MapMove.MapMoveTo(new MapPlace(MapType.Black_Forest, (int)PlaceInBlackForest.VineForest), window);
+            //start_time = DateTime.Now;
+            GoToGameRegion();
         }
 
         private bool DragonFight()
