@@ -19,14 +19,7 @@ namespace 撈金魚.Analyzer
         internal static bool FishSucessed(WindowSource source)
         {
             FastBitmap shot = ScreenAction.GetContentShot(source);
-            bool successed = AnalyzeElementImage.FindEndFrame(shot);
-
-            //code for debug
-            if (successed)
-            {
-                DateTime now = DateTime.Now;
-                shot.Save(now.Minute + "-" + now.Second + ".jpg");
-            }
+            bool successed = ImageDetermine.FindNormalConfirmDialog(shot);
 
             shot.Dispose();
             return successed;

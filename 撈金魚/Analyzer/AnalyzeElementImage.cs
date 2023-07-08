@@ -13,6 +13,8 @@ namespace 撈金魚.Analyzer
         {
             //this function can find first and second common confirm frame
             //and get card frame for elementknight.
+
+            //this function is similar to ImageDetermine.FindNormalConfirmDialog
             int[] xs = { 388, 580 };
             int[] ys = { 223, 358 };
             foreach (int x in xs)

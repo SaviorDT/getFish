@@ -15,7 +15,11 @@ namespace 撈金魚.Analyzer
 
             return color.R == color.G && color.R == color.B;
         }
-
+        internal static bool IsGrayForMole(FastBitmap bmp, int x, int y)
+        {
+            (x, y) = ProgramPointTranslator.MoleToContent(bmp.Width, bmp.Height, x, y);
+            return IsGray(bmp.Get(x, y));
+        }
         internal static bool TestColor(FastBitmap bmp, int color, int x, int y)
         {
             return bmp.GetI(x, y) == color;

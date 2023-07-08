@@ -24,7 +24,10 @@ namespace 撈金魚.ActionPerform
         protected override bool PlayGame()
         {
             FishFish();
-            Wait.WaitForMainWindow(window);
+            while(!Wait.WaitForMainWindow(window, 300))
+            {
+                MouseInput.MouseClickForMole(window, 1, 1);
+            }
             return EndFish();
         }
         
@@ -39,7 +42,10 @@ namespace 撈金魚.ActionPerform
         private void StartFish()
         {
             MouseInput.MouseClickForMole(window, 838, 32);
-            Wait.WaitForMemoryBook(window);
+            if (!Wait.WaitForMemoryBook(window))
+            {
+                return;
+            }
             MouseInput.MouseClickForMole(window, 788, 443);
             Wait.WaitForFishGamePanel(window);
             MouseInput.MouseClickForMole(window, 474, 485);
@@ -50,10 +56,10 @@ namespace 撈金魚.ActionPerform
             if (AnalyzeFishImage.FishSucessed(window))
             {
                 Click.ClickNormalConfirmButton(window);
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 return true;
             }
-            Thread.Sleep(500);
+            //Thread.Sleep(500);
             return false;
         }
         private void FishFish()

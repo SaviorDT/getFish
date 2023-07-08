@@ -18,11 +18,16 @@ namespace 撈金魚.Analyzer
         {
             return IsMainFrame(fastBitmap);
         }
-        internal static bool IsMainFrame(FastBitmap fastBitmap)
+        internal static bool IsMainFrame(FastBitmap img)
         {
-            (int x, int y) = ProgramPointTranslator.MoleToContent(fastBitmap.Width, fastBitmap.Height, 260, 547);
+            //(int x, int y) = ProgramPointTranslator.MoleToContent(img.Width, img.Height, 260, 547);
 
-            return fastBitmap.GetI(x, y) == -1 || fastBitmap.GetI(x, y) == -3487030;
+            //return img.GetI(x, y) == -1 || img.GetI(x, y) == -3487030 &&
+            //I didn't remember why I check if it is -3487030
+            return ColorDetermine.IsGrayForMole(img, 260, 547)
+                && 
+                (!ColorDetermine.IsGrayForMole(img, 800, 233)
+                || !ColorDetermine.IsGrayForMole(img, 100, 347));
         }
         public static bool ElementKnightBattleEnd(WindowSource source)
         {
@@ -72,6 +77,11 @@ namespace 撈金魚.Analyzer
             return ColorDetermine.IsWhiteForMole(img, 388, 223)
                 && ColorDetermine.IsWhiteForMole(img, 582, 223)
                 && ColorDetermine.IsWhiteForMole(img, 479, 347);
+        }
+        internal static bool FindNormalConfirmDialog(FastBitmap img)
+        {
+            return ColorDetermine.IsWhiteForMole(img, 388, 223)
+                && ColorDetermine.IsWhiteForMole(img, 582, 223);
         }
 
         internal static bool MainMapOpen(FastBitmap img)

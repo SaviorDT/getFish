@@ -12,7 +12,7 @@ namespace 撈金魚.ActionPerform
 {
     internal class Wait
     {
-        internal static bool WaitForMainWindow(WindowPack.WindowSource window, int timeout = 10000)
+        internal static bool WaitForMainWindow(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, ImageDetermine.IsMainFrame, timeout);
         }
@@ -24,10 +24,10 @@ namespace 撈金魚.ActionPerform
             {
                 //To use timeout, Some code should be modified first to handle timeout event.
 
-                //if(timeout > 0 && DateTime.Now > out_time)
-                //{
-                //    return false;
-                //}
+                if(timeout > 0 && DateTime.Now > out_time)
+                {
+                    return false;
+                }
                 FastBitmap shot = ScreenAction.GetContentShot(window);
                 if (Satisfy(shot))
                 {
@@ -40,22 +40,22 @@ namespace 撈金魚.ActionPerform
             return true;
         }
 
-        internal static bool WaitForNormalYesNoDialog(WindowPack.WindowSource window, int timeout = 10000)
+        internal static bool WaitForNormalYesNoDialog(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, ImageDetermine.FindNormalYesNoDialog, timeout);
         }
 
-        internal static bool WaitForMainMapOpen(WindowPack.WindowSource window, int timeout = 10000)
+        internal static bool WaitForMainMapOpen(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, ImageDetermine.MainMapOpen, timeout);
         }
 
-        internal static bool WaitForBlackForestMapOpen(WindowPack.WindowSource window, int timeout = 10000)
+        internal static bool WaitForBlackForestMapOpen(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, ImageDetermine.BlackForestMapOpen, timeout);
         }
 
-        internal static bool WaitForPlaceChange(WindowPack.WindowSource window, int timeout = 10000)
+        internal static bool WaitForPlaceChange(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, (FastBitmap img) => {
                 return !ImageDetermine.LoadingScene(img) && ImageDetermine.IsMainFrame(img);
