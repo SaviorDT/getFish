@@ -31,7 +31,7 @@ namespace 撈金魚
         private void PlayFishButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.fish);
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.fish);
         }
 
         public MainWindow()
@@ -65,13 +65,13 @@ namespace 撈金魚
         private void BuyFatNutrientButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.buy_nutrient);
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.buy_nutrient);
         }
 
         private void ElementKnightButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.play_element_knight);
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.play_element_knight);
         }
 
 
@@ -92,29 +92,26 @@ namespace 撈金魚
         private void ElementKnightKitButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.element_knight_kit);
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.element_knight_kit);
         }
 
         private void DragonButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window, GetLoopTimes(), ActionKit.dragon);
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.dragon);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            testFun(new structures.WindowPack.WindowSource(window, 0));
+            testFun(window.Windows[0]);
             //new structures.WindowPack.WindowSource(window, 0).ReOpen();
         }
 
         private void testFun(WindowPack.WindowSource window)
         {
-            //Thread.Sleep(1000);
-            //window.ReOpen();
-            CounterFrame f = new CounterFrame(ScreenAction.GetContentShot(window), 50);
-            f.Show();
-            f.FinishCount++;
+            FastBitmap shot = ScreenAction.GetContentShot(window);
+            shot.Save("test.png");
         }
 
         //public void addText(string s)

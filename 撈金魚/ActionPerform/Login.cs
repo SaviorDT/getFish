@@ -20,11 +20,6 @@ namespace 撈金魚.ActionPerform
         internal static void LoginAccount(WindowPack.WindowSource window)
         {
             MouseInput.MouseClickForMole(window, 483, 495);
-            while (SelectingAccount(window))
-            {
-                MouseInput.MouseClickForMole(window, 483, 495);
-                Thread.Sleep(1000);
-            }
         }
 
         private static bool SelectingAccount(WindowPack.WindowSource window)
@@ -50,12 +45,12 @@ namespace 撈金魚.ActionPerform
             Wait.WaitFor(window, ImageDetermine.SelectingAccount, timeout);
         }
 
-        internal static void WaitForSelectServer(WindowPack.WindowSource window, int timeout = -1)
+        internal static bool WaitForSelectServer(WindowPack.WindowSource window, int timeout = -1)
         {
-            Wait.WaitFor(window, ImageDetermine.SelectingServer, timeout);
+            return Wait.WaitFor(window, ImageDetermine.SelectingServer, timeout);
         }
 
-        internal static void WaitMainWindow()
+        internal static void WaitForProgramDraw()
         {
             Thread.Sleep(1000);
         }

@@ -25,28 +25,23 @@ namespace 撈金魚.ActionPerform
         }
 
         //private static int actioning = 0;
-        internal static void PerformButton(GetProgramWindow windows, int times, ActionKit action)
+        internal static void PerformButton(WindowSource[] windows, int times, ActionKit action)
         {
-            //if (actioning > 0)
-            //{
-            //    RejectAction();
-            //}
-            //else
-            //{
-            //Action<WindowSource, int> action_fun = get_action_fun(action);
             bool start_something = false;
-            for (int i = 0; i < windows.Processes.Length; i++)
+            for (int i = 0; i < windows.Length; i++)
             {
-                WindowSource window = new(windows, i);
-                if(window.IsEnable)
+                int tmp = i;
+
+                if (!windows[tmp].Actioning && windows[tmp].IsEnable)
                 {
                     start_something = true;
-                    window.IsEnable = false;
+                    windows[tmp].Actioning = true;
                     new Thread(() => {
                         //action_fun(window, times);
-                        GamePlayer player = GetGamePlayer(action, window, times);
+                        GamePlayer player = GetGamePlayer(action, windows[tmp], times);
                         player.Start();
-                        Click.GoRestaurant(window);
+                        Click.GoRestaurant(windows[tmp]);
+                        windows[tmp].Actioning = false;
                     }).Start();
                 }
             }

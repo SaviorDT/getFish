@@ -80,8 +80,10 @@ namespace 撈金魚.Analyzer
         }
         internal static bool FindNormalConfirmDialog(FastBitmap img)
         {
+                //this function is suitable for one or two normal confirm dialog
             return ColorDetermine.IsWhiteForMole(img, 388, 223)
-                && ColorDetermine.IsWhiteForMole(img, 582, 223);
+                && ColorDetermine.IsWhiteForMole(img, 582, 223)
+                && ColorDetermine.IsSimilarForMole(img, Color.FromArgb(255, 242, 147, 4), 355, 386);
         }
 
         internal static bool MainMapOpen(FastBitmap img)

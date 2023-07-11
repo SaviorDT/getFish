@@ -27,9 +27,20 @@ namespace 撈金魚.ToolToProgram
             ActionPerform.Login.ClickLoginButton(window);
             ActionPerform.Login.WaitForSelectAccount(window);
             ActionPerform.Login.LoginAccount(window);
-            ActionPerform.Login.WaitForSelectServer(window);
+            if (!ActionPerform.Login.WaitForSelectServer(window, 5000))
+            {
+                ActionPerform.Login.WaitForSelectAccount(window);
+                ActionPerform.Login.LoginAccount(window);
+                if (!ActionPerform.Login.WaitForSelectServer(window, 5000))
+                {
+                    Message.ShowMessageToUser("摩爾莊園似乎登不進去", "錯誤");
+                }
+            }
             ActionPerform.Login.SelectServer(window);
-            Wait.WaitForMainWindow(window);
+            if (!Wait.WaitForMainWindow(window, 15000))
+            {
+                Message.ShowMessageToUser("摩爾莊園似乎登不進去", "錯誤");
+            }
         }
 
         internal static Process ReOpenMole(Process process)

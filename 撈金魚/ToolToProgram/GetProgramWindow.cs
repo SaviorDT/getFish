@@ -1,7 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Markup;
 using 撈金魚.structures;
 using 撈金魚.ToolToProgram;
+using static 撈金魚.structures.WindowPack;
 
 namespace 撈金魚
 {
@@ -9,8 +12,7 @@ namespace 撈金魚
     {
 
         private readonly string process_name;
-        internal Process[] Processes { get; private set; }
-        internal WindowRect[] Rects_of_client { get; private set; }
+        internal WindowSource[] Windows = new WindowSource[0];
 
         public GetProgramWindow(string process_name)
         {
@@ -19,10 +21,35 @@ namespace 撈金魚
         }
         public void UpdateRect()
         {
-            Processes = Process.GetProcessesByName(process_name);
-            Processes = Validate_processes(Processes);
-            Rects_of_client = ProgramAttributes.GetContentRect(Processes);
+            Process[] processes = Process.GetProcessesByName(process_name);
+            WindowRect[] rects_of_client;
+            processes = Validate_processes(processes);
+            rects_of_client = ProgramAttributes.GetContentRect(processes);
+
+            UpdateWindowsInfo(processes, rects_of_client);
         }
+
+        private void UpdateWindowsInfo(Process[] processes, WindowRect[] rects_of_client)
+        {
+            HashSet<int> actioning_proccesses = new();
+            foreach(WindowSource window in Windows)
+            {
+                if (window.Actioning)
+                {
+                    actioning_proccesses.Add(window.Process.Id);
+                }
+            }
+            Windows = new WindowSource[processes.Length];
+            for(int i=0; i<processes.Length; i++)
+            {
+                Windows[i] = new WindowSource(processes[i], rects_of_client[i]);
+                if (actioning_proccesses.Contains(processes[i].Id))
+                {
+                    Windows[i].Actioning = true;
+                }
+            }
+        }
+
         //public void UpdateRect(int index)
         //{
         //    Rects_of_client[index] = ProgramAttributes.GetContentRect(Processes[index]);

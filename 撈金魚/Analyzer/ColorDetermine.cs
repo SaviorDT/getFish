@@ -24,6 +24,22 @@ namespace 撈金魚.Analyzer
         {
             return bmp.GetI(x, y) == color;
         }
+        internal static bool TestColorForSimilar(FastBitmap bmp, Color color, int x, int y, int difference = 32)
+        {
+            Color color2 = bmp.Get(x, y);
+            return NumberSimilar(color2.R, color.R, difference)
+                && NumberSimilar(color2.G, color.G, difference)
+                && NumberSimilar(color2.B, color.B, difference);
+        }
+
+        private static bool NumberSimilar(byte b1, byte b2, int difference)
+        {
+            if (difference < 0) difference = -difference;
+            int i1 = b1, i2 = b2;
+            int dif = i1 - i2;
+            return dif > -difference && dif < difference;
+        }
+
         internal static bool TestColorForMole(FastBitmap bmp, int color, int x, int y)
         {
             (x, y) = ProgramPointTranslator.MoleToContent(bmp.Width, bmp.Height, x, y);
@@ -50,6 +66,12 @@ namespace 撈金魚.Analyzer
         internal static bool IsTransparent(int color) 
         {
             return (color & 0xff000000) == 0;
+        }
+
+        internal static bool IsSimilarForMole(FastBitmap img, Color color, int x, int y, int difference = 32)
+        {
+            (x, y) = ProgramPointTranslator.MoleToContent(img.Width, img.Height, x, y);
+            return TestColorForSimilar(img, color, x, y);
         }
     }
 }

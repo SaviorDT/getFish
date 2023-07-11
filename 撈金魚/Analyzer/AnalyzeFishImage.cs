@@ -21,6 +21,13 @@ namespace 撈金魚.Analyzer
             FastBitmap shot = ScreenAction.GetContentShot(source);
             bool successed = ImageDetermine.FindNormalConfirmDialog(shot);
 
+            //debug code
+            if(successed)
+            {
+                DateTime now = DateTime.Now;
+                shot.Save(String.Format("{0}-{1}-{2}.png", now.Minute, now.Second, now.Millisecond));
+            }
+
             shot.Dispose();
             return successed;
         }

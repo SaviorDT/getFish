@@ -12,26 +12,32 @@ namespace 撈金魚.structures
         internal class WindowSource
         {
             internal Process Process { get; private set; }
-            internal WindowRect WindowRect { get; private set; }
-            internal bool IsEnable;
-
-            internal WindowSource(GetProgramWindow window, int index)
+            private WindowRect window_rect;
+            internal WindowRect WindowRect { get => window_rect; private set => window_rect = value; }
+            //internal bool IsEnable;
+            internal bool IsEnable { get => window_rect.is_enable; private set => window_rect.is_enable = value; }
+            private bool actioning = false;
+            internal bool Actioning
             {
-                Process = window.Processes[index];
-                WindowRect = window.Rects_of_client[index];
-                IsEnable = WindowRect.is_enable;
+                get => actioning;
+                set => actioning = value;
+            }
+
+            internal WindowSource(Process process, WindowRect rect)
+            {
+                Process = process;
+                WindowRect = rect;
             }
             internal void UpdateRect(bool checkWhiteArea = true)
             {
                 WindowRect = ProgramAttributes.GetContentRect(Process, checkWhiteArea);
-                IsEnable = WindowRect.is_enable;
             }
             internal void ReOpen()
             {
                 Process.CloseMainWindow();
                 Process.Dispose();
                 Process = MoleProgram.ReOpenMole(Process);
-                Login.WaitMainWindow();
+                Login.WaitForProgramDraw();
                 UpdateRect(false);
                 MoleProgram.Login(this);
             }

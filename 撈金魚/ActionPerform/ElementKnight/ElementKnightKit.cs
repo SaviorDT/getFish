@@ -30,7 +30,7 @@ namespace 撈金魚.ActionPerform.ElementKnight
             UseTiliPotion();
             PressShakesMore();
             //new ElementKnightPlayer(window, 25).Start();
-            player.Start(25);
+            player.Start(24);
             UseTiliPotion();
             PressShakesMore();
             //new ElementKnightPlayer(window, 7).Start();
@@ -38,7 +38,7 @@ namespace 撈金魚.ActionPerform.ElementKnight
 
             GoLastDungeon();
             //new ElementKnightPlayer(window, 19).Start();
-            player.Start(19);
+            player.Start(18);
 
             player.CloseCounterFrame();
         }
