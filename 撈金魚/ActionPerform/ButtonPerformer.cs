@@ -25,8 +25,13 @@ namespace 撈金魚.ActionPerform
         }
 
         //private static int actioning = 0;
-        internal static void PerformButton(WindowSource[] windows, int times, ActionKit action)
+        internal static void PerformButton(WindowSource[] windows, int times, ActionKit action, bool go_restaurant = true)
         {
+            if(times == -2)
+            {
+                return;
+            }
+
             bool start_something = false;
             for (int i = 0; i < windows.Length; i++)
             {
@@ -40,7 +45,10 @@ namespace 撈金魚.ActionPerform
                         //action_fun(window, times);
                         GamePlayer player = GetGamePlayer(action, windows[tmp], times);
                         player.Start();
-                        Click.GoRestaurant(windows[tmp]);
+                        if (go_restaurant)
+                        {
+                            Click.GoRestaurant(windows[tmp]);
+                        }
                         windows[tmp].Actioning = false;
                     }).Start();
                 }

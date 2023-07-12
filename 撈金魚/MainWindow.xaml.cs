@@ -31,15 +31,13 @@ namespace 撈金魚
         private void PlayFishButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.fish);
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.fish, false);
         }
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeGlobalHook();
-
-            //debugger.Text = Convert.ToString(window.processes.Length);
         }
 
         private void ClosingAction(object sender, CancelEventArgs e)
@@ -74,25 +72,27 @@ namespace 撈金魚
             ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.play_element_knight);
         }
 
-
-        //private void RemoveOneTime()
-        //{
-        //    Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-        //    {
-        //        input.Text = Convert.ToString(Convert.ToInt32(input.Text) - 1);
-        //    });
-        //}
-
         private int GetLoopTimes()
         {
             if(input.Text.Length == 0) return 0;
-            return Convert.ToInt32(input.Text);
+            try
+            {
+                return Convert.ToInt32(input.Text);
+            } catch(OverflowException e)
+            {
+                UserInterface.Message.ShowMessageToUser("數字太大了哈囉", "錯誤");
+            } catch (FormatException e)
+            {
+                UserInterface.Message.ShowMessageToUser("這不是數字哈囉", "錯誤");
+            }
+            //this means invalid number
+            return -2;
         }
 
         private void ElementKnightKitButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.element_knight_kit);
+            ButtonPerformer.PerformButton(window.Windows, 0, ActionKit.element_knight_kit);
         }
 
         private void DragonButton(object sender, RoutedEventArgs e)
@@ -105,7 +105,6 @@ namespace 撈金魚
         {
             window.UpdateRect();
             testFun(window.Windows[0]);
-            //new structures.WindowPack.WindowSource(window, 0).ReOpen();
         }
 
         private void testFun(WindowPack.WindowSource window)
@@ -113,32 +112,5 @@ namespace 撈金魚
             FastBitmap shot = ScreenAction.GetContentShot(window);
             shot.Save("test.png");
         }
-
-        //public void addText(string s)
-        //{
-        //    Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-        //    {
-        //        input.Text += s + "\n";
-        //    }
-        //    );
-        //}
-
-        //public void AddNum(int num)
-        //{
-        //    Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-        //    {
-        //        input.Text = Convert.ToString(Convert.ToInt32(input.Text) + num);
-        //    }
-        //    );
-        //}
-
-        //public void addText(string s)
-        //{
-        //Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-        //    {
-        //        text_block.Text += s + "\n";
-        //    }
-        //    );
-        //}
     }
 }

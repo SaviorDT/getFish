@@ -22,11 +22,11 @@ namespace 撈金魚.Analyzer
             bool successed = ImageDetermine.FindNormalConfirmDialog(shot);
 
             //debug code
-            if(successed)
-            {
-                DateTime now = DateTime.Now;
-                shot.Save(String.Format("{0}-{1}-{2}.png", now.Minute, now.Second, now.Millisecond));
-            }
+            //if(successed)
+            //{
+            //    DateTime now = DateTime.Now;
+            //    shot.Save(String.Format("test/{0}-{1}-{2}.png", now.Minute, now.Second, now.Millisecond));
+            //}
 
             shot.Dispose();
             return successed;

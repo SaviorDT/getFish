@@ -35,7 +35,7 @@ namespace 撈金魚.ActionPerform
                     break;
                 }
                 shot.Dispose();
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
             return true;
         }
