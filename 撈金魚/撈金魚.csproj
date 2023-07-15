@@ -71,7 +71,6 @@
     <Compile Include="ActionPerform\Common\Click.cs" />
     <Compile Include="ActionPerform\Common\MapMove.cs" />
     <Compile Include="ActionPerform\DragonPlayer.cs" />
-    <Compile Include="ActionPerform\ElementKnight\ElementKnightActionPerformer.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightKit.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightPlayer.cs" />
     <Compile Include="ActionPerform\FatHouse\BuyNutrient.cs" />
