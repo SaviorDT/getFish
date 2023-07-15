@@ -28,7 +28,7 @@ namespace 撈金魚
     {
         readonly GetProgramWindow window = new("flashplayer_32_sa");
 
-        private void PlayFishButton(object sender, RoutedEventArgs e)
+        private void PlayFishButton(object sender, RoutedEventArgs _)
         {
             window.UpdateRect();
             ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.fish, false);
@@ -40,7 +40,7 @@ namespace 撈金魚
             InitializeGlobalHook();
         }
 
-        private void ClosingAction(object sender, CancelEventArgs e)
+        private void ClosingAction(object sender, CancelEventArgs _)
         {
             //the default closing action may not actually stop the program.
             //It only close the window and work in background until your threads are done.
@@ -60,13 +60,13 @@ namespace 撈金魚
                 Environment.Exit(0);
         }
 
-        private void BuyFatNutrientButton(object sender, RoutedEventArgs e)
+        private void BuyFatNutrientButton(object sender, RoutedEventArgs _)
         {
             window.UpdateRect();
             ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.buy_nutrient);
         }
 
-        private void ElementKnightButton(object sender, RoutedEventArgs e)
+        private void ElementKnightButton(object sender, RoutedEventArgs _)
         {
             window.UpdateRect();
             ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.play_element_knight);
@@ -78,10 +78,10 @@ namespace 撈金魚
             try
             {
                 return Convert.ToInt32(input.Text);
-            } catch(OverflowException e)
+            } catch(OverflowException)
             {
                 UserInterface.Message.ShowMessageToUser("數字太大了哈囉", "錯誤");
-            } catch (FormatException e)
+            } catch (FormatException)
             {
                 UserInterface.Message.ShowMessageToUser("這不是數字哈囉", "錯誤");
             }
@@ -89,19 +89,19 @@ namespace 撈金魚
             return -2;
         }
 
-        private void ElementKnightKitButton(object sender, RoutedEventArgs e)
+        private void ElementKnightKitButton(object sender, RoutedEventArgs _)
         {
             window.UpdateRect();
             ButtonPerformer.PerformButton(window.Windows, 0, ActionKit.element_knight_kit);
         }
 
-        private void DragonButton(object sender, RoutedEventArgs e)
+        private void DragonButton(object sender, RoutedEventArgs _)
         {
             window.UpdateRect();
             ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.dragon);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs _)
         {
             window.UpdateRect();
             testFun(window.Windows[0]);

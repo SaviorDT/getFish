@@ -46,10 +46,8 @@ namespace 撈金魚.ActionPerform
 
         protected override bool PlayGame()
         {
-            if(fertilize)
             {
                 MouseInput.MouseClickForMole(window, 510, 398);
-                if(!Wait.WaitForNormalYesNoDialog(window, 1000))
                 {
                     MouseInput.MouseClickForMole(window, 510, 398);
                     if (!Wait.WaitForNormalYesNoDialog(window, 1000))
@@ -69,7 +67,6 @@ namespace 撈金魚.ActionPerform
         protected override void StartGame()
         {
             MouseInput.MouseClickForContent(window, tree_x, tree_y);
-            if(!Wait.WaitForMoMoTreeOpen(window, 1000))
             {
                 UserInterface.Message.ShowMessageToUser("似乎沒點到毛毛樹，請重新指定", "錯誤");
                 should_stop = true;

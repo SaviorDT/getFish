@@ -23,11 +23,20 @@ namespace 撈金魚.Analyzer
             //(int x, int y) = ProgramPointTranslator.MoleToContent(img.Width, img.Height, 260, 547);
 
             //return img.GetI(x, y) == -1 || img.GetI(x, y) == -3487030 &&
-            //I didn't remember why I check if it is -3487030
-            return ColorDetermine.IsGrayForMole(img, 260, 547)
-                && 
-                (!ColorDetermine.IsGrayForMole(img, 800, 233)
-                || !ColorDetermine.IsGrayForMole(img, 100, 347));
+            //I don't remember why I check if it is -3487030
+            return ColorDetermine.IsGrayForMole(img, 135, 547)
+                && ColorDetermine.IsGrayForMole(img, 275, 547); // only check chat box at left button
+                //&& 
+                //(!ColorDetermine.IsGrayForMole(img, 800, 233)
+                //|| !ColorDetermine.IsGrayForMole(img, 100, 347));
+        }
+        internal static bool FindUpper(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -531019, 690, 32);//247, 229, 181
+        }
+        internal static bool MainFrameLoadDone(FastBitmap img)
+        {
+            return IsMainFrame(img) && FindUpper(img);
         }
         public static bool ElementKnightBattleEnd(WindowSource source)
         {
@@ -98,13 +107,13 @@ namespace 撈金魚.Analyzer
             && ColorDetermine.TestColorForMole(img, -14733809, 444, 529);//31, 46, 15
         }
 
-        internal static bool LoadingScene(FastBitmap img)
-        {
-            return (ColorDetermine.TestColorForMole(img, -12013311, 368, 36)//72, 177, 1
-            && ColorDetermine.TestColorForMole(img, -3556708, 107, 82))//201, 186, 156
-            || (ColorDetermine.IsWhiteForMole(img, 489, 196)
-            && ColorDetermine.TestColorForMole(img, -71490, 107, 82));//254, 232, 190
-        }
+        //internal static bool LoadingScene(FastBitmap img)
+        //{
+        //    return (ColorDetermine.TestColorForMole(img, -12013311, 368, 36)//72, 177, 1
+        //    && ColorDetermine.TestColorForMole(img, -3556708, 107, 82))//201, 186, 156
+        //    || (ColorDetermine.IsWhiteForMole(img, 489, 196)
+        //    && ColorDetermine.TestColorForMole(img, -71490, 107, 82));//254, 232, 190
+        //}
 
         internal static bool MemoryBookOpen(FastBitmap img)
         {

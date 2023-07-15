@@ -14,7 +14,7 @@ namespace 撈金魚.ActionPerform
     {
         internal static bool WaitForMainWindow(WindowPack.WindowSource window, int timeout = -1)
         {
-            return WaitFor(window, ImageDetermine.IsMainFrame, timeout);
+            return WaitFor(window, ImageDetermine.MainFrameLoadDone, timeout);
         }
 
         internal static bool WaitFor(WindowPack.WindowSource window, Func<FastBitmap, bool> Satisfy, int timeout)
@@ -57,9 +57,7 @@ namespace 撈金魚.ActionPerform
 
         internal static bool WaitForPlaceChange(WindowPack.WindowSource window, int timeout = -1)
         {
-            return WaitFor(window, (FastBitmap img) => {
-                return !ImageDetermine.LoadingScene(img) && ImageDetermine.IsMainFrame(img);
-                }, timeout);
+            return WaitFor(window, ImageDetermine.MainFrameLoadDone, timeout);
         }
 
         internal static bool WaitForMemoryBook(WindowPack.WindowSource window, int timeout = 10000)
