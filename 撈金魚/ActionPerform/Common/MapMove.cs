@@ -48,7 +48,17 @@ namespace 撈金魚.ActionPerform.Common
             {
                 case MapType.Main:
                     MouseInput.MouseClickForMole(window, 39, 515);
-                    Wait.WaitForMainMapOpen(window);
+                    if (!Wait.WaitForMainMapOpen(window, 10000))
+                    {
+                        Click.GoRestaurant(window);
+                        Wait.WaitForPlaceChange(window, 5000);
+                        MouseInput.MouseClickForMole(window, 39, 515);
+                        if (!Wait.WaitForMainMapOpen(window, 5000))
+                        {
+                            UserInterface.Message.ShowMessageToUser("似乎無法開啟地圖", "錯誤");
+                            throw new Exception("cannot open main map");
+                        }
+                    }
                     break;
                 case MapType.Black_Forest:
                     OpenMap(MapType.Main, window);
