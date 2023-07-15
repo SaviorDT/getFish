@@ -18,6 +18,7 @@ namespace 撈金魚.ActionPerform.Common
         protected int total_times;
         protected CounterFrame counter;
         internal bool DoCounterFrameShow = true, DoCounterFrameClose = true;
+        protected bool should_stop = false;
         public GamePlayer(WindowSource window, int times)
         {
             this.window = window;
@@ -50,7 +51,7 @@ namespace 撈金魚.ActionPerform.Common
             while(play_times < total_times)
             {
                 StartGame();
-                if (PlayGame())
+                if (PlayGame() && !should_stop)
                 {
                     Application.Current.Dispatcher.Invoke((ThreadStart)delegate
                     {

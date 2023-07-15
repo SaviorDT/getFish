@@ -78,6 +78,7 @@
     <Compile Include="ActionPerform\GoldenFishPlayer.cs" />
     <Compile Include="ActionPerform\Common\Wait.cs" />
     <Compile Include="ActionPerform\Login.cs" />
+    <Compile Include="ActionPerform\MoMoTreeWaterer.cs" />
     <Compile Include="Analyzer\AnalyzeContentRect.cs" />
     <Compile Include="Analyzer\AnalyzeDragon.cs" />
     <Compile Include="Analyzer\AnalyzeElementImage.cs" />
