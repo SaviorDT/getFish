@@ -94,7 +94,16 @@
     <Compile Include="UserInterface\CounterFrame.xaml.cs">
       <DependentUpon>CounterFrame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\ImageMonitor.xaml.cs">
+      <DependentUpon>ImageMonitor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Message.cs" />
+    <Compile Include="UserInterface\MoMoTreeSetting.xaml.cs">
+      <DependentUpon>MoMoTreeSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\MouseInputWindow.xaml.cs">
+      <DependentUpon>MouseInputWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\UserInput.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +122,18 @@
     <Page Include="UserInterface\CounterFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\ImageMonitor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\MoMoTreeSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\MouseInputWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
