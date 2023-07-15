@@ -27,7 +27,7 @@ namespace 撈金魚.ActionPerform
     {
         public bool water, fertilize;
         public int tree_x, tree_y;
-        public MoMoTreeWaterer(WindowPack.WindowSource window, int times, object para) : base(window, times)
+        public MoMoTreeWaterer(WindowPack.WindowSource window, int times, object para) : base(window, times) 
         {
             SetProperty((MoMoTreePara)para);
         }
@@ -46,10 +46,10 @@ namespace 撈金魚.ActionPerform
 
         protected override bool PlayGame()
         {
-            if (fertilize)
+            if(fertilize)
             {
                 MouseInput.MouseClickForMole(window, 510, 398);
-                if (!Wait.WaitForNormalYesNoDialog(window, 1000))
+                if(!Wait.WaitForNormalYesNoDialog(window, 1000))
                 {
                     MouseInput.MouseClickForMole(window, 510, 398);
                     if (!Wait.WaitForNormalYesNoDialog(window, 1000))
@@ -69,7 +69,7 @@ namespace 撈金魚.ActionPerform
         protected override void StartGame()
         {
             MouseInput.MouseClickForContent(window, tree_x, tree_y);
-            if (!Wait.WaitForMoMoTreeOpen(window, 1000))
+            if(!Wait.WaitForMoMoTreeOpen(window, 1000))
             {
                 UserInterface.Message.ShowMessageToUser("似乎沒點到毛毛樹，請重新指定", "錯誤");
                 should_stop = true;
