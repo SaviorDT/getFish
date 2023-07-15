@@ -27,6 +27,7 @@ namespace 撈金魚
     public partial class MainWindow : Window
     {
         readonly GetProgramWindow window = new("flashplayer_32_sa");
+        private readonly MoMoTreeSetting momo_tree;
 
         private void PlayFishButton(object sender, RoutedEventArgs _)
         {
@@ -38,6 +39,8 @@ namespace 撈金魚
         {
             InitializeComponent();
             InitializeGlobalHook();
+
+            momo_tree = new MoMoTreeSetting(window);
         }
 
         private void ClosingAction(object sender, CancelEventArgs _)
@@ -111,6 +114,17 @@ namespace 撈金魚
         {
             FastBitmap shot = ScreenAction.GetContentShot(window);
             shot.Save("test.png");
+        }
+
+        private void MoMoTreeButton(object sender, RoutedEventArgs e)
+        {
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.momo_tree);
+        }
+
+        private void MoMoTreeSettingButton(object sender, RoutedEventArgs e)
+        {
+            momo_tree.Show();
         }
     }
 }

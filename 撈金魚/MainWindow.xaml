@@ -87,5 +87,12 @@
             </Button.ToolTip>
         </Button>
         <Button Content="test" HorizontalAlignment="Left" Margin="198,337,0,0" VerticalAlignment="Top" Height="35" Width="109" Click="Button_Click" AutomationProperties.HelpText="作者測試用，別點"/>
+        <Button Content="毛毛樹" HorizontalAlignment="Left" Margin="97,197,0,0" VerticalAlignment="Top" Height="31" Width="69" ToolTip="右鍵設定更多" Click="MoMoTreeButton">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="設定" IsCheckable="False" Click="MoMoTreeSettingButton"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
     </Grid>
 </Window>

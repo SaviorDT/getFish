@@ -11,14 +11,6 @@
         <Button Content="暫停" HorizontalAlignment="Left" Height="28" Margin="114,38,0,0" VerticalAlignment="Top" Width="64"/>
         <Button Content="停止" HorizontalAlignment="Left" Height="28" Margin="205,38,0,0" VerticalAlignment="Top" Width="64" TabIndex="9"/>
         <TextBox x:Name="counter" HorizontalAlignment="Left" Height="40" Margin="309,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="273" FontSize="24" ToolTip="次數記數" Focusable="False"/>
-        <Image x:Name="ImgDisplay" HorizontalAlignment="Center" Margin="0,96,0,0" VerticalAlignment="Top" Cursor="SizeAll" Stretch="Uniform" StretchDirection="Both" Panel.ZIndex="-1">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <TranslateTransform/>
-                    <ScaleTransform/>
-                    <RotateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+        <local:ImageMonitor x:Name="ImgDisplay" HorizontalAlignment="Center" Margin="0,96,0,0" VerticalAlignment="Top" Panel.ZIndex="-1"/>
     </Grid>
 </Window>

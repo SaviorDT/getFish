@@ -8,7 +8,7 @@ using static 撈金魚.structures.WindowPack;
 
 namespace 撈金魚
 {
-    internal class GetProgramWindow
+    public class GetProgramWindow
     {
 
         private readonly string process_name;
