@@ -12,7 +12,7 @@ namespace 撈金魚
     {
 
         private readonly string process_name;
-        internal WindowSource[] Windows = new WindowSource[0];
+        internal Dictionary<int, WindowSource> Windows = new();
 
         public GetProgramWindow(string process_name)
         {
@@ -22,31 +22,39 @@ namespace 撈金魚
         public void UpdateRect()
         {
             Process[] processes = Process.GetProcessesByName(process_name);
-            WindowRect[] rects_of_client;
+            //WindowRect[] rects_of_client;
             processes = Validate_processes(processes);
-            rects_of_client = ProgramAttributes.GetContentRect(processes);
+            //rects_of_client = ProgramAttributes.GetContentRect(processes);
 
-            UpdateWindowsInfo(processes, rects_of_client);
+            UpdateWindowsInfo(processes);
         }
 
-        private void UpdateWindowsInfo(Process[] processes, WindowRect[] rects_of_client)
+        private void UpdateWindowsInfo(Process[] processes)
         {
-            HashSet<int> actioning_proccesses = new();
-            foreach(WindowSource window in Windows)
+            HashSet<int> new_ids = new();
+            HashSet<int> delete_ids = new();
+            foreach(Process p in processes)
             {
-                if (window.Actioning)
+                new_ids.Add(p.Id);
+                if (!Windows.ContainsKey(p.Id))
                 {
-                    actioning_proccesses.Add(window.Process.Id);
+                    Windows.Add(p.Id, new WindowSource(p));
                 }
             }
-            Windows = new WindowSource[processes.Length];
-            for(int i=0; i<processes.Length; i++)
+            foreach(KeyValuePair<int,  WindowSource> w in Windows)
             {
-                Windows[i] = new WindowSource(processes[i], rects_of_client[i]);
-                if (actioning_proccesses.Contains(processes[i].Id))
+                if(new_ids.Contains(w.Key))
                 {
-                    Windows[i].Actioning = true;
+                    w.Value.UpdateRect();
                 }
+                else
+                {
+                    delete_ids.Add(w.Key);
+                }
+            }
+            foreach(int id in delete_ids)
+            {
+                Windows.Remove(id);
             }
         }
 

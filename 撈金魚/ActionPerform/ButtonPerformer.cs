@@ -21,11 +21,12 @@ namespace 撈金魚.ActionPerform
             buy_nutrient,
             play_element_knight,
             element_knight_kit,
-            dragon
+            dragon,
+            momo_tree
         }
 
         //private static int actioning = 0;
-        internal static void PerformButton(WindowSource[] windows, int times, ActionKit action, bool go_restaurant = true)
+        internal static void PerformButton(Dictionary<int, WindowSource> windows, int times, ActionKit action, bool go_restaurant = true, object para = null)
         {
             if(times == -2)
             {
@@ -33,23 +34,21 @@ namespace 撈金魚.ActionPerform
             }
 
             bool start_something = false;
-            for (int i = 0; i < windows.Length; i++)
+            foreach( WindowSource window in windows.Values )
             {
-                int tmp = i;
-
-                if (!windows[tmp].Actioning && windows[tmp].IsEnable)
+                if (!window.Actioning && window.IsEnable)
                 {
                     start_something = true;
-                    windows[tmp].Actioning = true;
+                    window.Actioning = true;
                     new Thread(() => {
                         //action_fun(window, times);
-                        GamePlayer player = GetGamePlayer(action, windows[tmp], times);
+                        GamePlayer player = GetGamePlayer(action, window, times, para);
                         player.Start();
                         if (go_restaurant)
                         {
-                            Click.GoRestaurant(windows[tmp]);
+                            Click.GoRestaurant(window);
                         }
-                        windows[tmp].Actioning = false;
+                        window.Actioning = false;
                     }).Start();
                 }
             }
@@ -60,7 +59,7 @@ namespace 撈金魚.ActionPerform
             //}
         }
 
-        private static GamePlayer GetGamePlayer(ActionKit action, WindowSource window, int times)
+        private static GamePlayer GetGamePlayer(ActionKit action, WindowSource window, int times, object para)
         {
             return action switch
             {
@@ -69,6 +68,7 @@ namespace 撈金魚.ActionPerform
                 ActionKit.buy_nutrient => new BuyNutrient(window, times),
                 ActionKit.element_knight_kit => new ElementKnightKit(window, times),
                 ActionKit.dragon => new DragonPlayer(window, times),
+                ActionKit.momo_tree => new MoMoTreeWaterer(window, times, para),
                 _ => throw new ArgumentException("action invalid"),
             };
         }

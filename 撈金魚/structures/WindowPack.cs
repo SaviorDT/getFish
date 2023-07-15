@@ -16,17 +16,11 @@ namespace 撈金魚.structures
             internal WindowRect WindowRect { get => window_rect; private set => window_rect = value; }
             //internal bool IsEnable;
             internal bool IsEnable { get => window_rect.is_enable; private set => window_rect.is_enable = value; }
-            private bool actioning = false;
-            internal bool Actioning
-            {
-                get => actioning;
-                set => actioning = value;
-            }
+            public bool Actioning;
 
-            internal WindowSource(Process process, WindowRect rect)
+            internal WindowSource(Process process)
             {
                 Process = process;
-                WindowRect = rect;
             }
             internal void UpdateRect(bool checkWhiteArea = true)
             {
