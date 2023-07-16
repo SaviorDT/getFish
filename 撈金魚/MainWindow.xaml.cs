@@ -119,7 +119,7 @@ namespace 撈金魚
         private void MoMoTreeButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.momo_tree);
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(), ActionKit.momo_tree, false, momo_tree.GetPara());
         }
 
         private void MoMoTreeSettingButton(object sender, RoutedEventArgs e)

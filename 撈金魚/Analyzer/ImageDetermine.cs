@@ -83,8 +83,7 @@ namespace 撈金魚.Analyzer
 
         internal static bool FindNormalYesNoDialog(FastBitmap img)
         {
-            return ColorDetermine.IsWhiteForMole(img, 388, 223)
-                && ColorDetermine.IsWhiteForMole(img, 582, 223)
+            return FindNormalConfirmDialog(img)
                 && ColorDetermine.IsWhiteForMole(img, 479, 347);
         }
         internal static bool FindNormalConfirmDialog(FastBitmap img)
@@ -121,7 +120,7 @@ namespace 撈金魚.Analyzer
                 || ColorDetermine.TestColorForMole(img, -69702, 379, 199); // 254, 239, 186
         }
 
-        internal static bool FishGamePanelOpen(FastBitmap img)
+        internal static bool FindMoMoTreeOpen(FastBitmap img)
         {
             return ColorDetermine.TestColorForMole(img, -1126138, 740, 122) // 238, 209, 6
                 || ColorDetermine.TestColorForMole(img, -12500575, 849, 219); // 65, 65, 161

@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Name="test">
     <Grid>
-        <Image x:Name="Image" Stretch="Uniform" StretchDirection="Both" Cursor="SizeAll">
+        <Image x:Name="Image" Stretch="Uniform" StretchDirection="Both">
             <Image.RenderTransform>
                 <TransformGroup>
                     <TranslateTransform/>

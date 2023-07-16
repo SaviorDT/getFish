@@ -20,8 +20,8 @@ namespace 撈金魚.UserInterface
     /// </summary>
     public partial class ImageMonitor : UserControl
     {
-        private System.Windows.Point mouse_down_point = new(0, 0);
-        public System.Windows.Point MouseDownPoint
+        private Point mouse_down_point = new(0, 0);
+        public Point MouseDownPoint
         {
             get { return mouse_down_point; }
             private set { mouse_down_point = value; }
@@ -42,7 +42,7 @@ namespace 撈金魚.UserInterface
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                System.Windows.Point mouse_pos = e.GetPosition(Image);
+                Point mouse_pos = e.GetPosition(Image);
 
                 TransformGroup new_transform = (TransformGroup)Image.RenderTransform.CloneCurrentValue();
                 TranslateTransform translate = new_transform.Children[0] as TranslateTransform;
@@ -56,7 +56,7 @@ namespace 撈金魚.UserInterface
         private void ImgMouseWheel(object sender, MouseWheelEventArgs e)
         {
             double delta_scale = e.Delta / 1000.0;
-            System.Windows.Point mouse_pos = e.GetPosition(Image);
+            Point mouse_pos = e.GetPosition(Image);
             TransformGroup new_transform = (TransformGroup)Image.RenderTransform.CloneCurrentValue();
             TranslateTransform translate = new_transform.Children[0] as TranslateTransform;
             ScaleTransform scale = new_transform.Children[1] as ScaleTransform;

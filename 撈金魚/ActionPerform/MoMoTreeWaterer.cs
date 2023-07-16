@@ -46,7 +46,9 @@ namespace 撈金魚.ActionPerform
 
         protected override bool PlayGame()
         {
+            if (fertilize)
             {
+                OpenMoMoTree();
                 MouseInput.MouseClickForMole(window, 510, 398);
                 {
                     MouseInput.MouseClickForMole(window, 510, 398);
@@ -59,20 +61,23 @@ namespace 撈金魚.ActionPerform
             }
             if (water)
             {
+                OpenMoMoTree();
                 MouseInput.MouseClickForMole(window, 411, 397);
             }
             return true;
         }
 
-        protected override void StartGame()
+        protected override void StartGame() { }
+
+        protected override void StopGame() { }
+        private void OpenMoMoTree()
         {
             MouseInput.MouseClickForContent(window, tree_x, tree_y);
+            if(!Wait.WaitForMoMoTreeOpen(window, 1000))
             {
                 UserInterface.Message.ShowMessageToUser("似乎沒點到毛毛樹，請重新指定", "錯誤");
                 should_stop = true;
             }
         }
-
-        protected override void StopGame() { }
     }
 }

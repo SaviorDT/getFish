@@ -25,6 +25,7 @@ namespace 撈金魚.UserInterface
         public int LastClickY { get; private set; }
         public bool GotInput { get; private set; }
         private UserInput.MouseInput input_type;
+        private Point mouse_down_point;
         public MouseInputWindow(FastBitmap img, UserInput.MouseInput input_type)
         {
             InitializeComponent();
@@ -33,25 +34,33 @@ namespace 撈金魚.UserInterface
             BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(ptr, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             bitmapSource.Freeze();
             ImgDisplay.Image.Source = bitmapSource;
+
+            img.Save("test/test.png");
             img.Dispose();
 
             this.input_type = input_type;
             GotInput = false;
 
+            ImgDisplay.Image.MouseDown += MouseDownAction;
             ImgDisplay.Image.MouseUp += MouseUpAction;
+        }
+
+        private void MouseDownAction(object sender, MouseButtonEventArgs e)
+        {
+            mouse_down_point = e.GetPosition(this);
         }
 
         private void MouseUpAction(object sender, MouseButtonEventArgs e)
         {
-            if (e.GetPosition(ImgDisplay.Image).Equals(ImgDisplay.MouseDownPoint))
+            if (e.GetPosition(this).Equals(mouse_down_point))
             {
-                LastClickX = (int)ImgDisplay.MouseDownPoint.X;
-                LastClickY = (int)ImgDisplay.MouseDownPoint.Y;
-            }
+                LastClickX = (int)(ImgDisplay.MouseDownPoint.X * ImgDisplay.Image.Source.Width / ImgDisplay.ActualWidth);
+                LastClickY = (int)(ImgDisplay.MouseDownPoint.Y * ImgDisplay.Image.Source.Height / ImgDisplay.ActualHeight);
 
-            if (input_type == UserInput.MouseInput.LeftClick)
-            {
-                GotInput = true;
+                if (input_type == UserInput.MouseInput.LeftClick)
+                {
+                    GotInput = true;
+                }
             }
         }
     }

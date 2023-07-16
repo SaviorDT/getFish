@@ -48,10 +48,10 @@ namespace 撈金魚.ActionPerform.Common
 
             GoToGameRegion();
             int play_times = 0;
-            while(play_times < total_times)
+            while(play_times < total_times && !should_stop)
             {
                 StartGame();
-                if (PlayGame() && !should_stop)
+                if (PlayGame())
                 {
                     Application.Current.Dispatcher.Invoke((ThreadStart)delegate
                     {

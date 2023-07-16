@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,7 +59,10 @@ namespace 撈金魚.UserInterface
         {
             windows.UpdateRect();
             FastBitmap random_img = ScreenAction.GetContentShot(windows.Windows.First().Value);
-            (MoMoX, MoMoY) = UserInput.GetMouseInput(random_img, UserInput.MouseInput.LeftClick);// disposed in MouseInputWindow
+            new Thread(() =>
+            {
+                (MoMoX, MoMoY) = UserInput.GetMouseInput(random_img, UserInput.MouseInput.LeftClick);// disposed in MouseInputWindow
+            }).Start();
         }
     }
 }
