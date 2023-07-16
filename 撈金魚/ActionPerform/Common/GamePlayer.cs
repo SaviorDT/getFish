@@ -37,20 +37,15 @@ namespace 撈金魚.ActionPerform.Common
         protected abstract void LeaveGameRegion();
         public virtual void Start()
         {
-            if (DoCounterFrameShow)
-            {
-                //counter.FinishCount = 0;
-                Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-                {
-                    counter.Show();
-                });
-            }
+            ShowCounterFrame();
 
             GoToGameRegion();
             int play_times = 0;
-            while(play_times < total_times && !should_stop)
+            while(play_times < total_times)
             {
+                if(should_stop) { CloseCounterFrame(); return; }
                 StartGame();
+                if (should_stop) { CloseCounterFrame(); return; }
                 if (PlayGame())
                 {
                     Application.Current.Dispatcher.Invoke((ThreadStart)delegate
@@ -58,16 +53,26 @@ namespace 撈金魚.ActionPerform.Common
                         counter.FinishCount = ++play_times;
                     });
                 }
+                if (should_stop) { CloseCounterFrame(); return; }
                 StopGame();
             }
+            if (should_stop) { CloseCounterFrame(); return; }
             LeaveGameRegion();
 
+            CloseCounterFrame();
+        }
+        public virtual void ShowCounterFrame()
+        {
+            if (DoCounterFrameShow)
+            {
+                ForceShowCounterFrame();
+            }
+        }
+        public virtual void CloseCounterFrame()
+        {
             if (DoCounterFrameClose)
             {
-                Application.Current.Dispatcher.Invoke((ThreadStart)delegate
-                {
-                    counter.Close();
-                });
+                ForceCloseCounterFrame();
             }
         }
         public virtual void Start(int times)
@@ -75,14 +80,14 @@ namespace 撈金魚.ActionPerform.Common
             Reset(times);
             Start();
         }
-        public virtual void ShowCounterFrame()
+        public virtual void ForceShowCounterFrame()
         {
             Application.Current.Dispatcher.Invoke((ThreadStart)delegate
             {
                 counter.Show();
             });
         }
-        public virtual void CloseCounterFrame()
+        public virtual void ForceCloseCounterFrame()
         {
             Application.Current.Dispatcher.Invoke((ThreadStart)delegate
             {

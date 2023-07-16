@@ -18,7 +18,7 @@ namespace 撈金魚.ActionPerform.ElementKnight
         public override void Start()
         {
             ElementKnightPlayer player = new ElementKnightPlayer(window, 75);
-            player.ShowCounterFrame();
+            player.ForceShowCounterFrame();
             player.DoCounterFrameClose = player.DoCounterFrameShow = false;
 
             GoInfiniteAbyss();
@@ -40,7 +40,7 @@ namespace 撈金魚.ActionPerform.ElementKnight
             //new ElementKnightPlayer(window, 19).Start();
             player.Start(18);
 
-            player.CloseCounterFrame();
+            player.ForceCloseCounterFrame();
         }
     }
 }

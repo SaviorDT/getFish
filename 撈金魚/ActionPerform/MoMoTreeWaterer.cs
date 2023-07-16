@@ -49,6 +49,7 @@ namespace 撈金魚.ActionPerform
             if (fertilize)
             {
                 OpenMoMoTree();
+                if (should_stop) { return false; }
                 MouseInput.MouseClickForMole(window, 510, 398);
                 {
                     MouseInput.MouseClickForMole(window, 510, 398);
@@ -62,6 +63,7 @@ namespace 撈金魚.ActionPerform
             if (water)
             {
                 OpenMoMoTree();
+                if (should_stop) { return false; }
                 MouseInput.MouseClickForMole(window, 411, 397);
             }
             return true;
