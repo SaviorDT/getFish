@@ -60,24 +60,29 @@ namespace 撈金魚.ActionPerform
             return WaitFor(window, ImageDetermine.MainFrameLoadDone, timeout);
         }
 
-        internal static bool WaitForMemoryBook(WindowPack.WindowSource window, int timeout = 10000)
+        internal static bool WaitForMemoryBook(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, ImageDetermine.MemoryBookOpen, timeout);
         }
 
-        internal static bool WaitForFishGamePanel(WindowPack.WindowSource window, int timeout = 10000)
+        internal static bool WaitForFishGamePanel(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, ImageDetermine.FishGamePanelOpen, timeout);
         }
 
-        internal static bool WaitForMoMoTreeOpen(WindowPack.WindowSource window, int timeout = 10000)
+        internal static bool WaitForMoMoTreeOpen(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, ImageDetermine.FindMoMoTreeOpen, timeout);
         }
 
-        internal static bool WaitForSceneLoaded(WindowPack.WindowSource window, int timeout)
+        internal static bool WaitForSceneLoaded(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, (img) => { return !ImageDetermine.LoadingScene(img); }, timeout);
+        }
+
+        internal static bool WaitForDragonFamePanel(WindowPack.WindowSource window, int timeout = -1)
+        {
+            return WaitFor(window, ImageDetermine.DragonGamePanelOpen, timeout);
         }
     }
 }

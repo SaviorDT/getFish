@@ -39,7 +39,8 @@ namespace 撈金魚.ActionPerform
             MapMove.MapMoveTo(new MapPlace(MapType.Black_Forest, (int)PlaceInBlackForest.VineForest), window);
             start_time = DateTime.Now;
             StartDragon();
-            Thread.Sleep(300);
+            Wait.WaitForDragonFamePanel(window);
+            //Thread.Sleep(300);
             SelectPage();
         }
 

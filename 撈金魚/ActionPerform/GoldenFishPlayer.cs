@@ -42,12 +42,12 @@ namespace 撈金魚.ActionPerform
         private void StartFish()
         {
             MouseInput.MouseClickForMole(window, 838, 32);
-            if (!Wait.WaitForMemoryBook(window))
+            if (!Wait.WaitForMemoryBook(window, 10000))
             {
                 return;
             }
             MouseInput.MouseClickForMole(window, 788, 443);
-            Wait.WaitForFishGamePanel(window);
+            Wait.WaitForFishGamePanel(window, 10000);
             MouseInput.MouseClickForMole(window, 474, 485);
         }
 

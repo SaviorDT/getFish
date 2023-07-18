@@ -136,5 +136,11 @@ namespace 撈金魚.Analyzer
             return ColorDetermine.IsWhiteForMole(img, 367, 352)
                 && ColorDetermine.TestColorForMole(img, -66133, 520, 311);
         }
+
+        internal static bool DragonGamePanelOpen(FastBitmap img)
+        {
+            return ColorDetermine.TestColorForMole(img, -13312, 252, 186)// 255, 204, 0
+                && ColorDetermine.TestColorForMole(img, -5145542, 414, 236);// 177, 124, 58
+        }
     }
 }
