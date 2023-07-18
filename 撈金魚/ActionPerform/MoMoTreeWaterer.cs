@@ -32,6 +32,7 @@ namespace 撈金魚.ActionPerform
     {
         public bool water, fertilize;
         public int tree_x, tree_y, empty_x, empty_y;
+        private static bool watering = false;
         public MoMoTreeWaterer(WindowPack.WindowSource window, int times, object para) : base(window, times) 
         {
             SetProperty((MoMoTreePara)para);
@@ -47,9 +48,19 @@ namespace 撈金魚.ActionPerform
             empty_y = para.empty_y;
         }
 
-        protected override void GoToGameRegion() { }
+        protected override void GoToGameRegion() 
+        {
+            while (watering)
+            {
+                Thread.Sleep(50);
+            }
+            watering = true;
+        }
 
-        protected override void LeaveGameRegion() { }
+        protected override void LeaveGameRegion() 
+        {
+            watering = false;
+        }
 
         protected override bool PlayGame()
         {
