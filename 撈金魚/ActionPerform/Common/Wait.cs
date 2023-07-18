@@ -67,12 +67,17 @@ namespace 撈金魚.ActionPerform
 
         internal static bool WaitForFishGamePanel(WindowPack.WindowSource window, int timeout = 10000)
         {
-            return WaitFor(window, ImageDetermine.FindMoMoTreeOpen, timeout);
+            return WaitFor(window, ImageDetermine.FishGamePanelOpen, timeout);
         }
 
         internal static bool WaitForMoMoTreeOpen(WindowPack.WindowSource window, int timeout = 10000)
         {
             return WaitFor(window, ImageDetermine.FindMoMoTreeOpen, timeout);
+        }
+
+        internal static bool WaitForSceneLoaded(WindowPack.WindowSource window, int timeout)
+        {
+            return WaitFor(window, (img) => { return !ImageDetermine.LoadingScene(img); }, timeout);
         }
     }
 }

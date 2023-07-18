@@ -113,6 +113,11 @@ namespace 撈金魚.Analyzer
         //    || (ColorDetermine.IsWhiteForMole(img, 489, 196)
         //    && ColorDetermine.TestColorForMole(img, -71490, 107, 82));//254, 232, 190
         //}
+        internal static bool LoadingScene(FastBitmap img)
+        {
+            return ColorDetermine.IsGrayForMole(img, 849, 110)
+                && ColorDetermine.IsSimilarForMole(img, Color.FromArgb(255, 242, 147, 4), 397, 404);
+        }
 
         internal static bool MemoryBookOpen(FastBitmap img)
         {
@@ -120,10 +125,16 @@ namespace 撈金魚.Analyzer
                 || ColorDetermine.TestColorForMole(img, -69702, 379, 199); // 254, 239, 186
         }
 
-        internal static bool FindMoMoTreeOpen(FastBitmap img)
+        internal static bool FishGamePanelOpen(FastBitmap img)
         {
             return ColorDetermine.TestColorForMole(img, -1126138, 740, 122) // 238, 209, 6
                 || ColorDetermine.TestColorForMole(img, -12500575, 849, 219); // 65, 65, 161
+        }
+
+        internal static bool FindMoMoTreeOpen(FastBitmap img)
+        {
+            return ColorDetermine.IsWhiteForMole(img, 367, 352)
+                && ColorDetermine.TestColorForMole(img, -66133, 520, 311);
         }
     }
 }

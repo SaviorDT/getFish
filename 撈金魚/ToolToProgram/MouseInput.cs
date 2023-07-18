@@ -87,8 +87,11 @@ namespace 撈金魚
             //if (y < 0) y += rect.Height;
             (x, y) = ProgramPointTranslator.ContentToProgram(source.WindowRect, x, y);
 
-            MoveMouse(source, x, y);
-            Thread.Sleep(delay);
+            if (delay > 0)
+            {
+                MoveMouse(source, x, y);
+                Thread.Sleep(delay);
+            }
             ClickLeftMouseButton(source, x, y);
         }
 
@@ -102,18 +105,18 @@ namespace 撈金魚
         //    }
         //}
 
-        private static bool clicking = false;
+        //private static bool clicking = false;
         public static void FishClickKit(WindowSource source, int x, int y)
         {
             //x += MainWindow.NET_FIX_X * source.WindowRect.Width / MainWindow.MOLE_W;
             //y += MainWindow.NET_FIX_Y * source.WindowRect.Height / MainWindow.MOLE_H;
-            while (clicking) { }
+            //while (clicking) { }
 
-            clicking = true;
+            //clicking = true;
             int delay = 80;
             MouseClickForContent(source, x, y, delay);
             MouseClickForMole(source, GoldenFishPlayer.BUCKET_NET_X, GoldenFishPlayer.BUCKET_NET_Y, delay);
-            clicking = false;
+            //clicking = false;
             // I forgotten why I wrote the line bellow.
             //while (clicking) { }
         }

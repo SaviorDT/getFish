@@ -81,6 +81,13 @@ namespace 撈金魚.ActionPerform
                     Point[] fish = FindDiferences();
                     if (fish.Length == 7)
                     {
+                        if(i < 12)
+                        {
+                            if(Wait.WaitForSceneLoaded(window, 10000))
+                            {
+                                continue;
+                            }
+                        }
                         failed = true;
                         break;
                     }
@@ -117,6 +124,7 @@ namespace 撈金魚.ActionPerform
             Point[] fish;
             if (ImageDetermine.FishEnded(shots[1], window.WindowRect))
             {
+                shots[1].Save("test/fish_ended.png");
                 fish = new Point[7];
             }
             else
