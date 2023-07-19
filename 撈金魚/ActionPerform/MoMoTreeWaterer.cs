@@ -10,23 +10,24 @@ using 撈金魚.structures;
 
 namespace 撈金魚.ActionPerform
 {
-    public struct MoMoTreePara
+    public class MoMoTreePara
     {
-        public bool water;
-        public bool fertilize;
-        public int tree_x;
-        public int tree_y;
-        public int empty_x;
-        public int empty_y;
+        public bool Water { get; set; }
+        public bool Fertilize { get; set; }
+        public int Tree_x { get; set; }
+        public int Tree_y { get; set; }
+        public int Empty_x { get; set; }
+        public int Empty_y { get; set; }
         public MoMoTreePara(bool w, bool f, int x, int y, int x2, int y2)
         {
-            water = w;
-            fertilize = f;
-            tree_x = x;
-            tree_y = y;
-            empty_x = x2;
-            empty_y = y2;
+            Water = w;
+            Fertilize = f;
+            Tree_x = x;
+            Tree_y = y;
+            Empty_x = x2;
+            Empty_y = y2;
         }
+        public MoMoTreePara() { }
     }
     internal class MoMoTreeWaterer : GamePlayer
     {
@@ -40,12 +41,12 @@ namespace 撈金魚.ActionPerform
 
         public void SetProperty(MoMoTreePara para)
         {
-            water = para.water;
-            fertilize = para.fertilize;
-            tree_x = para.tree_x;
-            tree_y = para.tree_y;
-            empty_x = para.empty_x;
-            empty_y = para.empty_y;
+            water = para.Water;
+            fertilize = para.Fertilize;
+            tree_x = para.Tree_x;
+            tree_y = para.Tree_y;
+            empty_x = para.Empty_x;
+            empty_y = para.Empty_y;
         }
 
         protected override void GoToGameRegion() 

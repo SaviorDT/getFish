@@ -12,7 +12,7 @@
         <CheckBox x:Name="fertilize" Content="施肥" HorizontalAlignment="Right" Margin="0,40,50,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="use_save" Content="使用儲存的檔案" HorizontalAlignment="Center" Margin="0,81,0,0" VerticalAlignment="Top"/>
         <Button x:Name="set_momo_tree_pos" Content="指定毛毛樹位置" HorizontalAlignment="Center" Margin="0,142,0,0" VerticalAlignment="Top" ToolTip="" Click="SetMomoTreePosClick"/>
-        <Button x:Name="save_settings" Content="儲存檔案" HorizontalAlignment="Left" Margin="50,195,0,0" VerticalAlignment="Top" ToolTip="下次不用重新設定"/>
+        <Button Content="儲存檔案" HorizontalAlignment="Left" Margin="50,195,0,0" VerticalAlignment="Top" ToolTip="下次不用重新設定" Click="Save_settings_Click"/>
         <Button Content="　確定　" HorizontalAlignment="Right" Margin="0,195,50,0" VerticalAlignment="Top" Click="ConfirmButtonClick" ToolTip="其實直接打叉就好了"/>
 
     </Grid>

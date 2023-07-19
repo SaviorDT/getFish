@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using 撈金魚.ActionPerform;
+using 撈金魚.FileManager;
 using static 撈金魚.structures.WindowPack;
 
 namespace 撈金魚.UserInterface
@@ -22,6 +23,7 @@ namespace 撈金魚.UserInterface
     public partial class MoMoTreeSetting : Window
     {
         private readonly GetProgramWindow windows;
+        private FileManager.MoMoTreeSettings settings;
         public bool DoWater
         {
             get { return water.IsChecked ?? false; }
@@ -37,11 +39,26 @@ namespace 撈金魚.UserInterface
         public int EmptyX { get; private set; }
         public int EmptyY { get; private set; }
 
-        public MoMoTreeSetting(GetProgramWindow windows)
+        public MoMoTreeSetting(GetProgramWindow windows, MoMoTreeSettings settings)
         {
             InitializeComponent();
             this.windows = windows;
-            MoMoX = MoMoY = -1;
+            this.settings = settings;
+            MoMoX = MoMoY = EmptyX = EmptyY = 0;
+            if (settings.ReadFile)
+            {
+                SetPara();
+            }
+        }
+        private void SetPara()
+        {
+            use_save.IsChecked = settings.ReadFile;
+            DoWater = settings.Para.Water;
+            DoFertilize = settings.Para.Fertilize;
+            MoMoX = settings.Para.Tree_x;
+            MoMoY = settings.Para.Tree_y;
+            EmptyX = settings.Para.Empty_x;
+            EmptyY = settings.Para.Empty_y;
         }
         public MoMoTreePara GetPara()
         {
@@ -96,6 +113,13 @@ namespace 撈金魚.UserInterface
                 } while (!Message.ShowYesNoToUser("請確認摩爾是否移動"));
                 Message.ShowMessageToUser("設定成功");
             }).Start();
+        }
+
+        private void Save_settings_Click(object sender, RoutedEventArgs e)
+        {
+            settings.ReadFile = use_save.IsChecked ?? false;
+            settings.Para = GetPara();
+            Hide();
         }
     }
 }
