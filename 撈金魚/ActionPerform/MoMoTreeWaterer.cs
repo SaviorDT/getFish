@@ -91,6 +91,12 @@ namespace 撈金魚.ActionPerform
             return true;
         }
 
+        protected override void InterruptAction()
+        {
+            base.InterruptAction();
+            water = false;
+        }
+
         protected override void StartGame() { }
 
         protected override void StopGame() { }

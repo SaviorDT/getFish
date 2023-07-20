@@ -35,6 +35,10 @@ namespace 撈金魚.ActionPerform.Common
         protected abstract void StopGame();
         protected abstract void GoToGameRegion();
         protected abstract void LeaveGameRegion();
+        protected virtual void InterruptAction() 
+        { 
+            CloseCounterFrame();
+        }
         public virtual void Start()
         {
             ShowCounterFrame();
@@ -43,9 +47,9 @@ namespace 撈金魚.ActionPerform.Common
             int play_times = 0;
             while(play_times < total_times)
             {
-                if(should_stop) { CloseCounterFrame(); return; }
+                if(should_stop) { InterruptAction(); return; }
                 StartGame();
-                if (should_stop) { CloseCounterFrame(); return; }
+                if (should_stop) { InterruptAction(); return; }
                 if (PlayGame())
                 {
                     Application.Current.Dispatcher.Invoke((ThreadStart)delegate
@@ -53,10 +57,10 @@ namespace 撈金魚.ActionPerform.Common
                         counter.FinishCount = ++play_times;
                     });
                 }
-                if (should_stop) { CloseCounterFrame(); return; }
+                if (should_stop) { InterruptAction(); return; }
                 StopGame();
             }
-            if (should_stop) { CloseCounterFrame(); return; }
+            if (should_stop) { InterruptAction(); return; }
             LeaveGameRegion();
 
             CloseCounterFrame();

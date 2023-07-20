@@ -2,7 +2,9 @@
 using Hazdryx.Drawing;
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
@@ -104,13 +106,13 @@ namespace 撈金魚
         private void Button_Click(object sender, RoutedEventArgs _)
         {
             window.UpdateRect();
-            testFun(window.Windows[0]);
+            testFun(window.Windows.Values.ToArray()[0]);
+            
         }
 
         private void testFun(WindowPack.WindowSource window)
         {
-            FastBitmap shot = ScreenAction.GetContentShot(window);
-            shot.Save("test.png");
+            window.ReOpen();
         }
         private int GetLoopTimes(ActionKit action)
         {

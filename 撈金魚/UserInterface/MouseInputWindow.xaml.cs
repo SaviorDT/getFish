@@ -35,7 +35,6 @@ namespace 撈金魚.UserInterface
             bitmapSource.Freeze();
             ImgDisplay.Image.Source = bitmapSource;
 
-            img.Save("test/test.png");
             img.Dispose();
 
             this.input_type = input_type;

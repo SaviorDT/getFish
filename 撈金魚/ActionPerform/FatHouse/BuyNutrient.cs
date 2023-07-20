@@ -50,6 +50,12 @@ namespace 撈金魚.ActionPerform.FatHouse
             Thread.Sleep(50);
         }
 
+        protected override void InterruptAction()
+        {
+            base.InterruptAction();
+            buying = false;
+        }
+
         //public static void BuyFatNutrient(WindowSource window, int times)
         //{
         //    while (buying)
