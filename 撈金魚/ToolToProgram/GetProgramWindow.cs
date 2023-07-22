@@ -54,6 +54,12 @@ namespace 撈金魚
             }
             foreach(int id in delete_ids)
             {
+                //if WindowSource.Reopen(), the id will change but key not change.
+                int last_id = Windows[id].Process.Id;
+                if (new_ids.Contains(last_id))
+                {
+                    Windows[last_id].Actioning = Windows[id].Actioning;
+                }
                 Windows.Remove(id);
             }
         }

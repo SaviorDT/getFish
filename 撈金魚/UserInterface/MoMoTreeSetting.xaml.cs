@@ -97,9 +97,11 @@ namespace 撈金魚.UserInterface
                 do
                 {
                     FastBitmap random_img = ScreenAction.GetContentShot(random_window);
-                    Message.ShowMessageToUser("請點擊圖片中的毛毛樹" +
-                        "\n需要點擊不會被施肥的鏟子擋到的地方" +
-                        "\n多試幾次就能抓到訣竅了");
+                    Message.ShowMessageToUser("請點擊圖片中的毛毛樹\n" +
+                        "如果你發現程式本來好好的\n" +
+                        "點著點著就點不到毛毛樹了\n" +
+                        "就代表那個位置會被施肥的鏟子擋住\n" +
+                        "需要重新指定一個更好的位置");
                     (MoMoX, MoMoY) = UserInput.GetMouseInput(random_img, UserInput.MouseInput.LeftClick);// disposed in MouseInputWindow
                     MouseInput.MouseClickForContent(random_window, MoMoX, MoMoY);
                 } while (!Message.ShowYesNoToUser("請確認毛毛樹是否被點開"));

@@ -77,8 +77,12 @@ namespace 撈金魚.Analyzer
 
         internal static bool SelectingAccount(FastBitmap img)
         {
+            Color color1 = Color.FromArgb(0, 153, 204);
+            Color color2 = Color.FromArgb(170, 192, 151);
             return ColorDetermine.IsWhiteForMole(img, 245, 323)//(RGB)=(255, 255, 255)
-                && ColorDetermine.TestColorForMole(img, -71490, 107, 82);//254, 232, 190
+                && ColorDetermine.TestColorForMole(img, -71490, 73, 82)//254, 232, 190
+            && (!ColorDetermine.IsTwoColorMixedForMole(img, color1, color2, 497, 300)
+                || !ColorDetermine.IsTwoColorMixedForMole(img, color1, color2, 462, 298));
         }
 
         internal static bool FindNormalYesNoDialog(FastBitmap img)

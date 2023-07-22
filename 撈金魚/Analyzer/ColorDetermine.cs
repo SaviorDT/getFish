@@ -73,5 +73,22 @@ namespace 撈金魚.Analyzer
             (x, y) = ProgramPointTranslator.MoleToContent(img.Width, img.Height, x, y);
             return TestColorForSimilar(img, color, x, y);
         }
+
+        internal static bool IsTwoColorMixedForMole(FastBitmap img, Color color1, Color color2, int x, int y, double tolerance = 32)
+        {
+            (x, y) = ProgramPointTranslator.MoleToContent(img.Width, img.Height, x, y);
+            Color test_color = img.Get(x, y);
+            byte R = test_color.R;
+            double rate = (double)(R - color1.R) / (color2.R - color1.R);
+            if(rate < -0.15 || rate > 1.15)
+            {
+                return false;
+            }
+            byte G = (byte)(color1.G + rate * (color2.G - color1.G));
+            byte B = (byte)(color1.B + rate * (color2.B - color1.B));
+
+            return NumberSimilar(G, test_color.G, (int)tolerance)
+                && NumberSimilar(B, test_color.B, (int)tolerance);
+        }
     }
 }

@@ -50,6 +50,8 @@ namespace 撈金魚.ActionPerform.Common
                     MouseInput.MouseClickForMole(window, 39, 515);
                     if (!Wait.WaitForMainMapOpen(window, 10000))
                     {
+                        CloseLoadingMap(window);
+                        Wait.WaitForMainWindow(window);
                         Click.GoRestaurant(window);
                         Wait.WaitForPlaceChange(window, 5000);
                         MouseInput.MouseClickForMole(window, 39, 515);
@@ -98,6 +100,10 @@ namespace 撈金魚.ActionPerform.Common
                 MouseInput.MouseClickForMole(window, x, y);
                 Wait.WaitForPlaceChange(window);
             }
+        }
+        private static void CloseLoadingMap(WindowSource window)
+        {
+            MouseInput.MouseClickForMole(window, 762, 255);
         }
     }
 }

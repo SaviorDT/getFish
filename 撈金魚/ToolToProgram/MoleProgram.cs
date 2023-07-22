@@ -34,6 +34,7 @@ namespace 撈金魚.ToolToProgram
                 if (!ActionPerform.Login.WaitForSelectServer(window, 5000))
                 {
                     Message.ShowMessageToUser("摩爾莊園似乎登不進去", "錯誤");
+                    return;
                 }
             }
             ActionPerform.Login.SelectServer(window);

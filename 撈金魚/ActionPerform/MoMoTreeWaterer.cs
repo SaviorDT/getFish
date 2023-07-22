@@ -53,7 +53,7 @@ namespace 撈金魚.ActionPerform
         {
             while (watering)
             {
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
             watering = true;
         }
@@ -94,7 +94,7 @@ namespace 撈金魚.ActionPerform
         protected override void InterruptAction()
         {
             base.InterruptAction();
-            water = false;
+            watering = false;
         }
 
         protected override void StartGame() { }
