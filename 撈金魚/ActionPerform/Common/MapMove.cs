@@ -57,8 +57,13 @@ namespace 撈金魚.ActionPerform.Common
                         MouseInput.MouseClickForMole(window, 39, 515);
                         if (!Wait.WaitForMainMapOpen(window, 5000))
                         {
-                            UserInterface.Message.ShowMessageToUser("似乎無法開啟地圖", "錯誤");
-                            throw new Exception("cannot open main map");
+                            //I don't know it didn't press the map sometimes.
+                            //MouseInput.MouseClickForMole(window, 39, 515);
+                            //if (!Wait.WaitForMainMapOpen(window, 5000))
+                            //{
+                                UserInterface.Message.ShowMessageToUser("似乎無法開啟地圖", "錯誤");
+                                throw new Exception("cannot open main map");
+                            //}
                         }
                     }
                     break;
@@ -103,7 +108,7 @@ namespace 撈金魚.ActionPerform.Common
         }
         private static void CloseLoadingMap(WindowSource window)
         {
-            MouseInput.MouseClickForMole(window, 762, 255);
+            MouseInput.MouseClickForMole(window, 611, 203);
         }
     }
 }

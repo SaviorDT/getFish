@@ -57,6 +57,9 @@ namespace 撈金魚.ActionPerform
 
         internal static bool WaitForPlaceChange(WindowPack.WindowSource window, int timeout = -1)
         {
+            //If didn't sleep, we will get the image before change start and 
+            //this function think the place changed.
+            Thread.Sleep(100);
             return WaitFor(window, ImageDetermine.MainFrameLoadDone, timeout);
         }
 

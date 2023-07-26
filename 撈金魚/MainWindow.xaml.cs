@@ -20,6 +20,7 @@ using 撈金魚.structures;
 using 撈金魚.ToolToProgram;
 using 撈金魚.UserInterface;
 using static 撈金魚.ActionPerform.ButtonPerformer;
+using static 撈金魚.ActionPerform.Common.MapMove;
 using Application = System.Windows.Application;
 using Point = System.Drawing.Point;
 
@@ -113,6 +114,12 @@ namespace 撈金魚
         private void testFun(WindowPack.WindowSource window)
         {
             window.ReOpen();
+            //MapMove.MapMoveTo(new MapPlace(MapType.Black_Forest, (int)PlaceInBlackForest.VineForest), window);
+
+            Click.GoRestaurant(window);
+            Wait.WaitForPlaceChange(window, 5000);
+            MouseInput.MouseClickForMole(window, 39, 515);
+            //ScreenAction.GetContentShot(window).Save("test/shot.png");
         }
         private int GetLoopTimes(ActionKit action)
         {

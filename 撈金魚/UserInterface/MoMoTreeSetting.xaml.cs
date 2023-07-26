@@ -109,7 +109,8 @@ namespace 撈金魚.UserInterface
                 do
                 {
                     FastBitmap random_img = ScreenAction.GetContentShot(random_window);
-                    Message.ShowMessageToUser("請點擊一個可以走過去的位置");
+                    Message.ShowMessageToUser("請點擊一個遠離毛毛樹\n" +
+                        "並且可以走過去的位置");
                     (EmptyX, EmptyY) = UserInput.GetMouseInput(random_img, UserInput.MouseInput.LeftClick);// disposed in MouseInputWindow
                     MouseInput.MouseClickForContent(random_window, EmptyX, EmptyY);
                 } while (!Message.ShowYesNoToUser("請確認摩爾是否移動"));

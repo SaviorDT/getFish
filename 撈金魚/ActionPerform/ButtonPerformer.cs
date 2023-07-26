@@ -42,13 +42,19 @@ namespace 撈金魚.ActionPerform
                     window.Actioning = true;
                     new Thread(() => {
                         //action_fun(window, times);
-                        GamePlayer player = GetGamePlayer(action, window, times, para);
-                        player.Start();
-                        if (go_restaurant)
+                        try
                         {
-                            Click.GoRestaurant(window);
+                            GamePlayer player = GetGamePlayer(action, window, times, para);
+                            player.Start();
+                            if (go_restaurant)
+                            {
+                                Click.GoRestaurant(window);
+                            }
                         }
-                        window.Actioning = false;
+                        finally
+                        {
+                            window.Actioning = false;
+                        }
                     }).Start();
                 }
             }

@@ -38,9 +38,13 @@ namespace 撈金魚.ToolToProgram
                 }
             }
             ActionPerform.Login.SelectServer(window);
-            if (!Wait.WaitForMainWindow(window, 15000))
+            if (!Wait.WaitForMainWindow(window, 5000))
             {
-                Message.ShowMessageToUser("摩爾莊園似乎登不進去", "錯誤");
+                ActionPerform.Login.SelectServer(window);
+                if (!Wait.WaitForMainWindow(window, 15000))
+                {
+                    Message.ShowMessageToUser("摩爾莊園似乎登不進去", "錯誤");
+                }
             }
         }
 

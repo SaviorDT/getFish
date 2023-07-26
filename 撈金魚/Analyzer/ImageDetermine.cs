@@ -65,8 +65,19 @@ namespace 撈金魚.Analyzer
 
         internal static bool SelectingServer(FastBitmap img)
         {
+            int server_bar_mole_mouth = Color.FromArgb(248, 237, 197).ToArgb();
+            //bool ret = ColorDetermine.TestColorForMole(img, -8559, 478, 247)//(RGB)=(255, 222, 145)
+            //    && ColorDetermine.TestColorForMole(img, -791, 497, 474)
+            //&& (!ColorDetermine.IsTwoColorMixedForMole(img, color1, color2, 497, 300)
+            //    || !ColorDetermine.IsTwoColorMixedForMole(img, color1, color2, 462, 298)); ;//255, 252, 233
+            //if (ret)
+            //{
+            //    img.Save("test/select_server.png");
+            //}
+            //return ret;
             return ColorDetermine.TestColorForMole(img, -8559, 478, 247)//(RGB)=(255, 222, 145)
-                && ColorDetermine.TestColorForMole(img, -791, 497, 474);//255, 252, 233
+                && ColorDetermine.TestColorForMole(img, -791, 497, 474)//255, 252, 233
+                && ColorDetermine.TestColorForMole(img, server_bar_mole_mouth, 183, 156);
         }
 
         internal static bool CanOpenLoginPage(FastBitmap img)
