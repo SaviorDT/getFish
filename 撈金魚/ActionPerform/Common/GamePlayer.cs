@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,14 +20,14 @@ namespace 撈金魚.ActionPerform.Common
         protected CounterFrame counter;
         internal bool DoCounterFrameShow = true, DoCounterFrameClose = true;
         protected bool should_stop = false;
-        public GamePlayer(WindowSource window, int times)
+        public GamePlayer(WindowSource window, int times, string title = "計數器")
         {
             this.window = window;
             total_times = times;
 
             Application.Current.Dispatcher.Invoke((ThreadStart)delegate
             {
-                counter = new CounterFrame(ScreenAction.GetContentShot(window), total_times);
+                counter = new CounterFrame(ScreenAction.GetContentShot(window), total_times, title);
             });
             //counter = new CounterFrame(ScreenAction.GetContentShot(window), total_times);
         }

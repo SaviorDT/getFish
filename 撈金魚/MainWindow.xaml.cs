@@ -195,5 +195,11 @@ namespace 撈金魚
             //this means invalid number
             return -2;
         }
+
+        private void HelpPlayFishButton(object sender, RoutedEventArgs e)
+        {
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(ActionKit.fish), ActionKit.help_fish, false);
+        }
     }
 }

@@ -94,5 +94,6 @@
                 </ContextMenu>
             </Button.ContextMenu>
         </Button>
+        <Button Content="代撈金魚" HorizontalAlignment="Left" Margin="198,197,0,0" VerticalAlignment="Top" Height="31" Width="74" ToolTip="11~15分鐘自動關掉" Click="HelpPlayFishButton"/>
     </Grid>
 </Window>

@@ -43,7 +43,7 @@ namespace 撈金魚.UserInterface
                 counter.Text = finishCount + "/" + totalCount;
             }
         }
-        public CounterFrame(FastBitmap img, int totalCount)
+        public CounterFrame(FastBitmap img, int totalCount, string title = "計數器")
         {
             InitializeComponent();
 
@@ -55,6 +55,8 @@ namespace 撈金魚.UserInterface
 
             this.TotalCount = totalCount;
             counter.Text = "0/" + totalCount;
+
+            this.Title = title;
         }
     }
 }

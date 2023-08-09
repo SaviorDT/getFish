@@ -15,7 +15,7 @@ namespace 撈金魚.ActionPerform
     {
         public const int BUCKET_NET_X = 150, BUCKET_NET_Y = -10, BUCKET_WATER_X = 235, BUCKET_WATER_Y = 415, NET_FIX_X = 50, NET_FIX_Y = 45;
 
-        public GoldenFishPlayer(WindowSource window, int times) : base(window, times) { }
+        public GoldenFishPlayer(WindowSource window, int times, string title = "普通撈金魚-計數器") : base(window, times, title) { }
         protected override void StartGame()
         {
             StartFish();
@@ -142,5 +142,23 @@ namespace 撈金魚.ActionPerform
         //    (int adjx, int adjy) = ProgramPointTranslator.MoleToContent(rect, x, y);
         //    return (adjx + x, adjy + y);
         //}
+    }
+
+    internal class HelpGoldenFishPlayer : GoldenFishPlayer
+    {
+        public HelpGoldenFishPlayer(WindowSource window, int times) : base(window, times, "代撈金魚-計數器")
+        {
+        }
+
+        public override void Start()
+        {
+            DateTime start_time = DateTime.Now;
+            base.Start();
+            double random = start_time.Millisecond % 240;
+            // 11~15 min - passed time
+            TimeSpan sleep_time = TimeSpan.FromSeconds(660 + random) - (DateTime.Now - start_time);
+            Thread.Sleep(sleep_time);
+            window.Process.CloseMainWindow();
+        }
     }
 }

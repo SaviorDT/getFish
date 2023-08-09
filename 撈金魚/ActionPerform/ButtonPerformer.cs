@@ -22,7 +22,8 @@ namespace 撈金魚.ActionPerform
             play_element_knight,
             element_knight_kit,
             dragon,
-            momo_tree
+            momo_tree,
+            help_fish
         }
 
         //private static int actioning = 0;
@@ -75,6 +76,7 @@ namespace 撈金魚.ActionPerform
                 ActionKit.element_knight_kit => new ElementKnightKit(window, times),
                 ActionKit.dragon => new DragonPlayer(window, times),
                 ActionKit.momo_tree => new MoMoTreeWaterer(window, times, para),
+                ActionKit.help_fish => new HelpGoldenFishPlayer(window, times),
                 _ => throw new ArgumentException("action invalid"),
             };
         }
