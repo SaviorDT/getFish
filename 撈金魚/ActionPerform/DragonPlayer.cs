@@ -21,6 +21,7 @@ namespace 撈金魚.ActionPerform
         private static bool find_slot_not_proper = false;
         private DateTime start_time = DateTime.Now;
         private DragonProperty property;
+        private readonly int restart_time = 15000;
         protected override void StartGame()
         {
             SelectMob();
@@ -60,7 +61,9 @@ namespace 撈金魚.ActionPerform
         }
 
 
-        public DragonPlayer(WindowSource window, int times) : base(window, times) { }
+        public DragonPlayer(WindowSource window, int times) : base(window, times) 
+        {
+        }
 
         private bool SetProperty()
         {
@@ -69,10 +72,8 @@ namespace 撈金魚.ActionPerform
             total_times /= 10;
             property.page = total_times % 10;
             total_times /= 10;
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                counter.TotalCount = total_times;
-            }));
+
+            Reset(total_times);
 
 
             if (property.slot <= 0 || property.slot > 5)
@@ -134,7 +135,7 @@ namespace 撈金魚.ActionPerform
                     shot.Dispose();
 
 
-                    if (DateTime.Now - start_time > TimeSpan.FromMinutes(15))
+                    if (DateTime.Now - start_time > TimeSpan.FromMilliseconds(restart_time))
                     {
                         LetDragonNotLag();
                     }

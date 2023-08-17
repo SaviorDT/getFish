@@ -74,8 +74,10 @@
     <Compile Include="ActionPerform\ElementKnight\ElementKnightKit.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightPlayer.cs" />
     <Compile Include="ActionPerform\FatHouse\BuyNutrient.cs" />
+    <Compile Include="ActionPerform\Feeder.cs" />
     <Compile Include="ActionPerform\GoldenFishPlayer.cs" />
     <Compile Include="ActionPerform\Common\Wait.cs" />
+    <Compile Include="ActionPerform\HomeFarmBuyer.cs" />
     <Compile Include="ActionPerform\Login.cs" />
     <Compile Include="ActionPerform\MoMoTreeWaterer.cs" />
     <Compile Include="ActionPerform\PinballPlayer.cs" />

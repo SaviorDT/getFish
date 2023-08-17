@@ -85,6 +85,11 @@
                     </TextBlock>
                 </ToolTip>
             </Button.ToolTip>
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="設定" IsCheckable="False" Click="DragonSettingButton"/>
+                </ContextMenu>
+            </Button.ContextMenu>
         </Button>
         <Button Content="test" HorizontalAlignment="Left" Margin="198,337,0,0" VerticalAlignment="Top" Height="35" Width="109" Click="Button_Click" AutomationProperties.HelpText="作者測試用，別點"/>
         <Button Content="毛毛樹" HorizontalAlignment="Left" Margin="97,197,0,0" VerticalAlignment="Top" Height="31" Width="69" ToolTip="右鍵設定更多" Click="MoMoTreeButton">
@@ -95,5 +100,28 @@
             </Button.ContextMenu>
         </Button>
         <Button Content="代撈金魚" HorizontalAlignment="Left" Margin="198,197,0,0" VerticalAlignment="Top" Height="31" Width="74" ToolTip="11~15分鐘自動關掉" Click="HelpPlayFishButton"/>
+        <Button Content="家園牧場商店" HorizontalAlignment="Left" Margin="306,197,0,0" VerticalAlignment="Top" Height="31" Width="85" Click="HomeFarmBuyButton">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>
+                        請打開家園或牧場商店的正確頁面<LineBreak/>
+                        輸入[次數][位置]<LineBreak/>
+                        例如123就會購買99*12個第3格的東西<LineBreak/>
+                        左上為1，先左右後上下。
+                    </TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <Button Content="添加飼料" HorizontalAlignment="Left" Margin="425,197,0,0" VerticalAlignment="Top" Height="31" Width="91" Click="FeedButton">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>
+                        請到你要的人家裡打開飼料槽<LineBreak/>
+                        輸入[次數][飼料位置(豎)][飼料位置(橫)]<LineBreak/>
+                        例如1212就會放入999*12個魚餌
+                    </TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
     </Grid>
 </Window>

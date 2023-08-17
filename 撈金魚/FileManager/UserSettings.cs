@@ -31,6 +31,7 @@ namespace 撈金魚.FileManager
     {
         public CountSettings Counts { get; set; }
         public MoMoTreeSettings Momo { get; set; }
+        public int Dragon { get; set; }
         public AllSettings()
         {
             Counts = new CountSettings();

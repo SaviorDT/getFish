@@ -199,7 +199,23 @@ namespace 撈金魚
         private void HelpPlayFishButton(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(ActionKit.fish), ActionKit.help_fish, false);
+            ButtonPerformer.PerformButton(window.Windows, 30, ActionKit.help_fish, false);
+        }
+
+        private void HomeFarmBuyButton(object sender, RoutedEventArgs e)
+        {
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(ActionKit.home_farm_buy), ActionKit.home_farm_buy, false);
+        }
+
+        private void FeedButton(object sender, RoutedEventArgs e)
+        {
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(ActionKit.feed), ActionKit.feed, false);
+        }
+        private void DragonSettingButton(object sender, RoutedEventArgs e)
+        {
+            UserInterface.Message.ShowMessageToUser("功能未實裝");
         }
     }
 }
