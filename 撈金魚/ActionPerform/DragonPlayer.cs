@@ -21,7 +21,7 @@ namespace 撈金魚.ActionPerform
         private static bool find_slot_not_proper = false;
         private DateTime start_time = DateTime.Now;
         private DragonProperty property;
-        private readonly int restart_time = 15000;
+        private readonly int restart_time = 900;
         protected override void StartGame()
         {
             SelectMob();
@@ -135,7 +135,7 @@ namespace 撈金魚.ActionPerform
                     shot.Dispose();
 
 
-                    if (DateTime.Now - start_time > TimeSpan.FromMilliseconds(restart_time))
+                    if (DateTime.Now - start_time > TimeSpan.FromSeconds(restart_time))
                     {
                         LetDragonNotLag();
                     }
