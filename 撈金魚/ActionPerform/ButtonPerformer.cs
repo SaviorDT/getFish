@@ -25,7 +25,8 @@ namespace 撈金魚.ActionPerform
             momo_tree,
             help_fish,
             home_farm_buy,
-            feed
+            feed,
+            test
         }
 
         //private static int actioning = 0;
@@ -81,6 +82,7 @@ namespace 撈金魚.ActionPerform
                 ActionKit.help_fish => new HelpGoldenFishPlayer(window, times),
                 ActionKit.home_farm_buy => new HomeFarmBuyer(window, times),
                 ActionKit.feed => new Feeder(window, times),
+                ActionKit.test => new ReopenPlayer(window, times),
                 _ => throw new ArgumentException("action invalid"),
             };
         }

@@ -107,8 +107,9 @@ namespace 撈金魚
         private void Button_Click(object sender, RoutedEventArgs _)
         {
             window.UpdateRect();
-            testFun(window.Windows.Values.ToArray()[0]);
-            
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(ActionKit.test), ActionKit.test, false);
+            //testFun(window.Windows.Values.ToArray()[0]);
+
         }
 
         private void testFun(WindowPack.WindowSource window)

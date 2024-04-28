@@ -81,6 +81,8 @@
     <Compile Include="ActionPerform\Login.cs" />
     <Compile Include="ActionPerform\MoMoTreeWaterer.cs" />
     <Compile Include="ActionPerform\PinballPlayer.cs" />
+    <Compile Include="ActionPerform\ReopenPlayer.cs" />
+    <Compile Include="ActionPerform\TmpPlayer.cs" />
     <Compile Include="Analyzer\AnalyzeContentRect.cs" />
     <Compile Include="Analyzer\AnalyzeDragon.cs" />
     <Compile Include="Analyzer\AnalyzeElementImage.cs" />

@@ -45,6 +45,11 @@ namespace 撈金魚.ActionPerform
             return WaitFor(window, ImageDetermine.FindNormalYesNoDialog, timeout);
         }
 
+        internal static bool WaitForNormalConfirmDialog(WindowPack.WindowSource window, int timeout = -1)
+        {
+            return WaitFor(window, ImageDetermine.FindNormalConfirmDialog, timeout);
+        }
+
         internal static bool WaitForMainMapOpen(WindowPack.WindowSource window, int timeout = -1)
         {
             return WaitFor(window, ImageDetermine.MainMapOpen, timeout);

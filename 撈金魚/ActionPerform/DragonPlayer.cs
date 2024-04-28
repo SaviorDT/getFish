@@ -21,7 +21,7 @@ namespace 撈金魚.ActionPerform
         private static bool find_slot_not_proper = false;
         private DateTime start_time = DateTime.Now;
         private DragonProperty property;
-        private readonly int restart_time = 900;
+        private readonly int restart_time = 600;
         protected override void StartGame()
         {
             SelectMob();
