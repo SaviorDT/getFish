@@ -123,5 +123,7 @@
                 </ToolTip>
             </Button.ToolTip>
         </Button>
+        <Button HorizontalAlignment="Left" Margin="97,337,0,0" VerticalAlignment="Top" Height="35" Width="69" Click="CaptureMousePos" Content="抓座標" ToolTip="查看滑鼠點擊座標"/>
+        <Button Content="保衛月餅島" HorizontalAlignment="Left" Margin="550,197,0,0" VerticalAlignment="Top" Width="78" Height="31" ToolTip="自己想辦法飛到月餅島，然後按下去" Click="DefenceMoonCake"/>
     </Grid>
 </Window>

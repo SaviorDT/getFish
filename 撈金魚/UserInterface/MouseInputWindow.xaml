@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:撈金魚.UserInterface"
         mc:Ignorable="d"
-        Title="點擊畫面" Height="450" Width="800">
-    <Grid>
+        Closing="ClosingAction"
+        Title="點擊畫面" Height="700" Width="960">
+    <Grid Height="560" VerticalAlignment="Bottom">
         <local:ImageMonitor x:Name="ImgDisplay" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <TextBox x:Name="InfoText" HorizontalAlignment="Center" Margin="0,-94,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="926" Height="59" FontSize="36"/>
 
     </Grid>
 </Window>

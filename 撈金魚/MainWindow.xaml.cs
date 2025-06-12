@@ -218,5 +218,17 @@ namespace 撈金魚
         {
             UserInterface.Message.ShowMessageToUser("功能未實裝");
         }
+
+        private void CaptureMousePos(object sender, RoutedEventArgs e)
+        {
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window.Windows, 1, ActionKit.capture_mouse_pos);
+        }
+
+        private void DefenceMoonCake(object sender, RoutedEventArgs e)
+        {
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(ActionKit.defence_moon_cake), ActionKit.defence_moon_cake);
+        }
     }
 }

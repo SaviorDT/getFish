@@ -18,8 +18,10 @@ namespace 撈金魚.UserInterface
         }
         internal static string SelectFile()
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.CheckFileExists = true;
+            OpenFileDialog file = new()
+            {
+                CheckFileExists = true
+            };
             file.ShowDialog();
 
             return file.FileName;

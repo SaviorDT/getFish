@@ -67,9 +67,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ActionPerform\ButtonPerformer.cs" />
+    <Compile Include="ActionPerform\CaptureMousePosPlayer.cs" />
     <Compile Include="ActionPerform\Common\GamePlayer.cs" />
     <Compile Include="ActionPerform\Common\Click.cs" />
     <Compile Include="ActionPerform\Common\MapMove.cs" />
+    <Compile Include="ActionPerform\Common\OldAngelPlayer.cs" />
+    <Compile Include="ActionPerform\DefenceMoonCakePlayer.cs" />
     <Compile Include="ActionPerform\DragonPlayer.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightKit.cs" />
     <Compile Include="ActionPerform\ElementKnight\ElementKnightPlayer.cs" />

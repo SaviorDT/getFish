@@ -26,6 +26,8 @@ namespace 撈金魚.ActionPerform
             help_fish,
             home_farm_buy,
             feed,
+            capture_mouse_pos,
+            defence_moon_cake,
             test
         }
 
@@ -82,7 +84,9 @@ namespace 撈金魚.ActionPerform
                 ActionKit.help_fish => new HelpGoldenFishPlayer(window, times),
                 ActionKit.home_farm_buy => new HomeFarmBuyer(window, times),
                 ActionKit.feed => new Feeder(window, times),
-                ActionKit.test => new ReopenPlayer(window, times),
+                ActionKit.test => new TmpPlayer(window, times),
+                ActionKit.capture_mouse_pos => new CaptureMousePosPlayer(window, times),
+                ActionKit.defence_moon_cake => new DefenceMoonCakePlayer(window, times),
                 _ => throw new ArgumentException("action invalid"),
             };
         }
