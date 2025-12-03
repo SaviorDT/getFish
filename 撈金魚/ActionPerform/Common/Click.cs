@@ -18,7 +18,7 @@ namespace 撈金魚.ActionPerform
         }
         internal static void PressMyDomain(WindowSource window)
         {
-            MouseInput.MouseClickForMole(window, 880, 538);
+            MouseInput.MouseClickForMole(window, 880, 538, 100);
         }
         //public static void ClickNormalConfirmButton(WindowSource source)
         //{
@@ -46,6 +46,24 @@ namespace 撈金魚.ActionPerform
                 x -= 100;
             }
             MouseInput.MouseClickForMole(source, x, y);
+        }
+
+
+        internal static void MuteMole(WindowSource window)
+        {
+            MouseInput.MouseMoveForMole(window, 38, 506);
+            MouseInput.MouseClickForMole(window, 90, 470, 100);
+        }
+
+        internal static void GoRanch(WindowSource window)
+        {
+            PressMyDomain(window);
+            MouseInput.MouseClickForMole(window, 880, 308);
+        }
+
+        internal static void RanchWater(WindowSource window)
+        {
+            MouseInput.MouseClickForMole(window, 284, 456);
         }
     }
 }

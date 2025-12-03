@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hazdryx.Drawing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -46,6 +47,23 @@ namespace 撈金魚.ToolToProgram
                     Message.ShowMessageToUser("摩爾莊園似乎登不進去", "錯誤");
                 }
             }
+        }
+
+        internal static void LoginAccount(WindowPack.WindowSource window, string account, string password)
+        {
+            ActionPerform.Login.WaitForLogin(window, 1000);
+            ActionPerform.Login.ClickLoginButton(window);
+            ActionPerform.Login.WaitForSelectAccount(window, 1000);
+            ActionPerform.Login.SelectOtherAccount(window);
+            ActionPerform.Login.WaitForInputOtherAccount(window);
+            ActionPerform.Login.RememberAccount(window);
+            ActionPerform.Login.InputAccount(window, account);
+            ActionPerform.Wait.WaitForTimeout(window, 100);
+            ActionPerform.Login.InputPassword(window, password);
+            ActionPerform.Login.LoginOtherAccount(window);
+            ActionPerform.Login.WaitForSelectServer(window, 5000);
+            ActionPerform.Login.SelectServer(window);
+            Wait.WaitForMainWindow(window, 5000);
         }
 
         internal static Process ReOpenMole(Process process)

@@ -1,6 +1,7 @@
 ﻿using Gma.System.MouseKeyHook;
 using Hazdryx.Drawing;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -33,6 +34,7 @@ namespace 撈金魚
     {
         readonly GetProgramWindow window = new("flashplayer_32_sa");
         private AllSettings user_settings = UserSettings.Load();
+        private readonly List<AccountDatum> account_data = AccountDataLoader.Load();
         private readonly MoMoTreeSetting momo_tree;
 
         private void PlayFishButton(object sender, RoutedEventArgs _)
@@ -222,13 +224,19 @@ namespace 撈金魚
         private void CaptureMousePos(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
-            ButtonPerformer.PerformButton(window.Windows, 1, ActionKit.capture_mouse_pos);
+            ButtonPerformer.PerformButton(window.Windows, 1, ActionKit.capture_mouse_pos, false);
         }
 
         private void DefenceMoonCake(object sender, RoutedEventArgs e)
         {
             window.UpdateRect();
             ButtonPerformer.PerformButton(window.Windows, GetLoopTimes(ActionKit.defence_moon_cake), ActionKit.defence_moon_cake);
+        }
+
+        private void LinWeiAction(object sender, RoutedEventArgs e)
+        {
+            window.UpdateRect();
+            ButtonPerformer.PerformButton(window.CreateNewWindows(account_data.Count), 1, ActionKit.lin_wei, false, account_data);
         }
     }
 }

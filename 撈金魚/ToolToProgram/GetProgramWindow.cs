@@ -12,7 +12,7 @@ namespace 撈金魚
     {
 
         private readonly string process_name;
-        internal Dictionary<int, WindowSource> Windows = new();
+        internal Dictionary<int, WindowSource> Windows = [];
 
         public GetProgramWindow(string process_name)
         {
@@ -27,6 +27,23 @@ namespace 撈金魚
             //rects_of_client = ProgramAttributes.GetContentRect(processes);
 
             UpdateWindowsInfo(processes);
+        }
+
+        internal Dictionary<int, WindowSource> CreateNewWindows(int count)
+        {
+            Dictionary<int, WindowSource> newWindows = [];
+            for (int i = 0; i < count; i++)
+            {
+                Process p = MoleProgram.ReOpenMole(null);
+                if (p != null)
+                {
+                    Windows.Add(p.Id, new WindowSource(p));
+                    newWindows.Add(p.Id, Windows[p.Id]);
+                    Windows[p.Id].UpdateRect(false);
+                }
+            }
+
+            return newWindows;
         }
 
         private void UpdateWindowsInfo(Process[] processes)

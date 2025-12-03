@@ -52,4 +52,34 @@ namespace 撈金魚.FileManager
             return JsonSerializer.Deserialize<AllSettings>(jsonString.Equals("") ? "{}" : jsonString);
         }
     }
+
+    internal class AccountDatum
+    {
+        public string Account { get; set; }
+        public string Password { get; set; }
+        public AccountDatum(string account, string password)
+        {
+            Account = account;
+            Password = password;
+        }
+    }
+
+    internal class AccountDataLoader
+    {
+        public static List<AccountDatum> Load()
+        {
+            string accountText = FileActionPerformer.LoadTextFile("帳號密碼.txt");
+            List<AccountDatum> accountData = new();
+            string[] lines = accountText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string line in lines)
+            {
+                string trimmedLine = line.Trim();
+                string account = trimmedLine.Split(':')[0].Trim();
+                string password = trimmedLine.Split(':')[1].Trim();
+                accountData.Add(new AccountDatum(account, password));
+            }
+
+            return accountData;
+        }
+    }   
 }

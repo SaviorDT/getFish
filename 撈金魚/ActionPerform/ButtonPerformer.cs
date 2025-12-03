@@ -28,6 +28,7 @@ namespace 撈金魚.ActionPerform
             feed,
             capture_mouse_pos,
             defence_moon_cake,
+            lin_wei,
             test
         }
 
@@ -87,6 +88,7 @@ namespace 撈金魚.ActionPerform
                 ActionKit.test => new TmpPlayer(window, times),
                 ActionKit.capture_mouse_pos => new CaptureMousePosPlayer(window, times),
                 ActionKit.defence_moon_cake => new DefenceMoonCakePlayer(window, times),
+                ActionKit.lin_wei => new LinWeiPlayer(window, para),
                 _ => throw new ArgumentException("action invalid"),
             };
         }

@@ -51,6 +51,16 @@ namespace 撈金魚
             //}
         }
 
+        internal static void MouseMoveForMole(WindowSource source, int x, int y, int delay = 100)
+        {
+            (x, y) = ProgramPointTranslator.MoleToProgram(source.WindowRect, x, y);
+            MoveMouse(source, x, y);
+            if (delay > 0)
+            {
+                Thread.Sleep(delay);
+            }
+        }
+
         public static void MouseClickForMole(WindowSource source, int x, int y, int delay = 0)
         {
             WindowRect rect = source.WindowRect;

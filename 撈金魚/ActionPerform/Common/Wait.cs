@@ -92,5 +92,10 @@ namespace 撈金魚.ActionPerform
         {
             return WaitFor(window, ImageDetermine.DragonGamePanelOpen, timeout);
         }
+
+        internal static bool WaitForTimeout(WindowPack.WindowSource window, int milliseconds)
+        {
+            return WaitFor(window, (img) => { return false; }, milliseconds);
+        }
     }
 }

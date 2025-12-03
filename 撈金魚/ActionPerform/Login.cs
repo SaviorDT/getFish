@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using 撈金魚.Analyzer;
 using 撈金魚.structures;
+using 撈金魚.ToolToProgram;
 
 namespace 撈金魚.ActionPerform
 {
@@ -51,6 +53,38 @@ namespace 撈金魚.ActionPerform
         }
 
         internal static void WaitForProgramDraw()
+        {
+            Thread.Sleep(1000);
+        }
+
+        internal static void SelectOtherAccount(WindowPack.WindowSource window)
+        {
+            MouseInput.MouseClickForMole(window, 83, 525);
+        }
+
+        internal static void RememberAccount(WindowPack.WindowSource window)
+        {
+            MouseInput.MouseClickForMole(window, 592, 193);
+        }
+
+        internal static void LoginOtherAccount(WindowPack.WindowSource window)
+        {
+            MouseInput.MouseClickForMole(window, 487, 342);
+        }
+
+        internal static void InputAccount(WindowPack.WindowSource window, string account)
+        {
+            MouseInput.MouseClickForMole(window, 447, 192);
+            KeyboardInput.SendStringToWindow(window, account);
+        }
+
+        internal static void InputPassword(WindowPack.WindowSource window, string password)
+        {
+            MouseInput.MouseClickForMole(window, 443, 234);
+            KeyboardInput.SendStringToWindow(window, password);
+        }
+
+        internal static void WaitForInputOtherAccount(WindowPack.WindowSource window)
         {
             Thread.Sleep(1000);
         }
