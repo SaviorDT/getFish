@@ -32,7 +32,7 @@ namespace 撈金魚
     /// </summary>
     public partial class MainWindow : Window
     {
-        readonly GetProgramWindow window = new("flashplayer_32_sa");
+        readonly GetProgramWindow window = new("flashplayer");
         private AllSettings user_settings = UserSettings.Load();
         private readonly List<AccountDatum> account_data = AccountDataLoader.Load();
         private readonly MoMoTreeSetting momo_tree;

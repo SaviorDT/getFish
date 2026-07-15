@@ -21,7 +21,16 @@ namespace 撈金魚
         }
         public void UpdateRect()
         {
-            Process[] processes = Process.GetProcessesByName(process_name);
+            List<Process> matchedProcesses = [];
+            foreach (Process p in Process.GetProcesses())
+            {
+                if (p.ProcessName != null && p.ProcessName.Contains(process_name))
+                {
+                    matchedProcesses.Add(p);
+                }
+            }
+
+            Process[] processes = [.. matchedProcesses];
             //WindowRect[] rects_of_client;
             processes = Validate_processes(processes);
             //rects_of_client = ProgramAttributes.GetContentRect(processes);
