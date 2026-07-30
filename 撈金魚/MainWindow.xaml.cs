@@ -32,7 +32,8 @@ namespace 撈金魚
     /// </summary>
     public partial class MainWindow : Window
     {
-        readonly GetProgramWindow window = new("flashplayer");
+        private const string DEFAULT_PROCESS_NAME = "flashplayer";
+        readonly GetProgramWindow window;
         private AllSettings user_settings = UserSettings.Load();
         private readonly List<AccountDatum> account_data = AccountDataLoader.Load();
         private readonly MoMoTreeSetting momo_tree;
@@ -48,6 +49,7 @@ namespace 撈金魚
             InitializeComponent();
             InitializeGlobalHook();
 
+            window = new GetProgramWindow(string.IsNullOrEmpty(user_settings.ProcessName) ? DEFAULT_PROCESS_NAME : user_settings.ProcessName);
             momo_tree = new MoMoTreeSetting(window, user_settings.Momo);
         }
 
@@ -237,6 +239,18 @@ namespace 撈金魚
         {
             window.UpdateRect();
             ButtonPerformer.PerformButton(window.CreateNewWindows(account_data.Count), 1, ActionKit.lin_wei, false, account_data);
+        }
+
+        private void SelectProcessButton(object sender, RoutedEventArgs e)
+        {
+            ProcessSelectWindow select_window = new();
+            if (select_window.ShowDialog() == true)
+            {
+                //settings.json is only actually written in ClosingAction, matching other settings here
+                user_settings.ProcessName = select_window.SelectedProcessName;
+                window.SetProcessName(select_window.SelectedProcessName);
+                UserInterface.Message.ShowMessageToUser("已選擇");
+            }
         }
     }
 }

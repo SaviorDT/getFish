@@ -116,6 +116,9 @@
     <Compile Include="UserInterface\MouseInputWindow.xaml.cs">
       <DependentUpon>MouseInputWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\ProcessSelectWindow.xaml.cs">
+      <DependentUpon>ProcessSelectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\UserInput.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\MouseInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\ProcessSelectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

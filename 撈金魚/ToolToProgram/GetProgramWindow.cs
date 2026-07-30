@@ -11,10 +11,15 @@ namespace 撈金魚
     public class GetProgramWindow
     {
 
-        private readonly string process_name;
+        private string process_name;
         internal Dictionary<int, WindowSource> Windows = [];
 
         public GetProgramWindow(string process_name)
+        {
+            this.process_name = process_name;
+            UpdateRect();
+        }
+        public void SetProcessName(string process_name)
         {
             this.process_name = process_name;
             UpdateRect();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using 撈金魚.ActionPerform;
 using 撈金魚.ActionPerform.FatHouse;
@@ -32,6 +33,8 @@ namespace 撈金魚.FileManager
         public CountSettings Counts { get; set; }
         public MoMoTreeSettings Momo { get; set; }
         public int Dragon { get; set; }
+        [JsonPropertyName("process_name")]
+        public string ProcessName { get; set; }
         public AllSettings()
         {
             Counts = new CountSettings();

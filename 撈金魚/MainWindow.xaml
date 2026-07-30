@@ -91,7 +91,7 @@
                 </ContextMenu>
             </Button.ContextMenu>
         </Button>
-        <Button Content="test" HorizontalAlignment="Left" Margin="198,337,0,0" VerticalAlignment="Top" Height="35" Width="109" Click="Button_Click" AutomationProperties.HelpText="作者測試用，別點"/>
+        <Button Content="test" HorizontalAlignment="Left" Margin="306,337,0,0" VerticalAlignment="Top" Height="35" Width="85" Click="Button_Click" AutomationProperties.HelpText="作者測試用，別點"/>
         <Button Content="毛毛樹" HorizontalAlignment="Left" Margin="97,197,0,0" VerticalAlignment="Top" Height="31" Width="69" ToolTip="右鍵設定更多" Click="MoMoTreeButton">
             <Button.ContextMenu>
                 <ContextMenu>
@@ -137,6 +137,16 @@
                     </TextBlock>
                 </ToolTip>
             </Button.ToolTip>
+        </Button>
+        <Button Content="選擇應用程式" HorizontalAlignment="Left" Margin="198,337,0,0" VerticalAlignment="Top" Height="35" Width="82" Click="SelectProcessButton" ToolTip="選擇要操作的視窗程式，重新啟動程式後生效" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.305"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
         </Button>
     </Grid>
 </Window>
