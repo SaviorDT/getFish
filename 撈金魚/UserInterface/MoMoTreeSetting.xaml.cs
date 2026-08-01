@@ -102,7 +102,7 @@ namespace 撈金魚.UserInterface
                         "點著點著就點不到毛毛樹了\n" +
                         "就代表那個位置會被施肥的鏟子擋住\n" +
                         "需要重新指定一個更好的位置");
-                    (MoMoX, MoMoY) = UserInput.GetMouseInput(random_img, UserInput.MouseInput.LeftClick);// disposed in MouseInputWindow
+                    (MoMoX, MoMoY) = UserInput.GetMouseInput(random_img, UserInput.MouseInput.LeftClick).GetAwaiter().GetResult();// disposed in MouseInputWindow
                     MouseInput.MouseClickForContent(random_window, MoMoX, MoMoY);
                 } while (!Message.ShowYesNoToUser("請確認毛毛樹是否被點開"));
                 MouseInput.MouseClickForMole(random_window, 569, 115);
@@ -111,7 +111,7 @@ namespace 撈金魚.UserInterface
                     FastBitmap random_img = ScreenAction.GetContentShot(random_window);
                     Message.ShowMessageToUser("請點擊一個遠離毛毛樹\n" +
                         "並且可以走過去的位置");
-                    (EmptyX, EmptyY) = UserInput.GetMouseInput(random_img, UserInput.MouseInput.LeftClick);// disposed in MouseInputWindow
+                    (EmptyX, EmptyY) = UserInput.GetMouseInput(random_img, UserInput.MouseInput.LeftClick).GetAwaiter().GetResult();// disposed in MouseInputWindow
                     MouseInput.MouseClickForContent(random_window, EmptyX, EmptyY);
                 } while (!Message.ShowYesNoToUser("請確認摩爾是否移動"));
                 Message.ShowMessageToUser("設定成功");

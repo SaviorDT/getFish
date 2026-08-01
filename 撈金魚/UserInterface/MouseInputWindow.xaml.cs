@@ -26,7 +26,7 @@ namespace 撈金魚.UserInterface
     {
         public int LastClickX { get; private set; }
         public int LastClickY { get; private set; }
-        public bool GotInput { get; private set; }
+        public TaskCompletionSource<(int X, int Y)> InputTcs { get; } = new TaskCompletionSource<(int X, int Y)>();
         private UserInput.MouseInput input_type;
         private System.Windows.Point mouse_down_point;
 
@@ -55,7 +55,6 @@ namespace 撈金魚.UserInterface
             img.Dispose();
 
             this.input_type = input_type;
-            GotInput = false;
 
             ImgDisplay.Image.MouseMove += MouseMoveAction;
             ImgDisplay.Image.MouseDown += MouseDownAction;
@@ -106,17 +105,15 @@ namespace 撈金魚.UserInterface
 
                 if (input_type == UserInput.MouseInput.LeftClick)
                 {
-                    GotInput = true;
+                    InputTcs.TrySetResult((LastClickX, LastClickY));
                 }
             }
         }
 
         private void ClosingAction(object sender, CancelEventArgs _)
         {
-            //Not to block the waiting thread
-            GotInput = true;
-            LastClickX = -1;
-            LastClickY = -1;
+            //Not to block the waiting thread if the window is closed without a click
+            InputTcs.TrySetResult((-1, -1));
         }
     }
 }

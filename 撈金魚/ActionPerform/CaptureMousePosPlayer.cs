@@ -28,7 +28,7 @@ namespace 撈金魚.ActionPerform
         protected override bool PlayGame()
         {
             FastBitmap shot = ScreenAction.GetContentShot(window);
-            UserInput.GetMouseInput(shot, UserInput.MouseInput.LeftClick);
+            UserInput.GetMouseInput(shot, UserInput.MouseInput.LeftClick).GetAwaiter().GetResult();
             return true;
         }
 

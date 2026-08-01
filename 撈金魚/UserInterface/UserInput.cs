@@ -27,7 +27,7 @@ namespace 撈金魚.UserInterface
             return file.FileName;
         }
 
-        internal static (int MoMoX, int MoMoY) GetMouseInput(FastBitmap img, MouseInput input_type)
+        internal static async Task<(int MoMoX, int MoMoY)> GetMouseInput(FastBitmap img, MouseInput input_type)
         {
             MouseInputWindow input = null;
             System.Windows.Application.Current.Dispatcher.Invoke((ThreadStart)delegate
@@ -35,15 +35,14 @@ namespace 撈金魚.UserInterface
                 input = new MouseInputWindow(img, input_type);
                 input.Show();
             });
-            while (!input.GotInput)
-            {
-                Thread.Sleep(100);
-            }
+
+            (int X, int Y) result = await input.InputTcs.Task.ConfigureAwait(false);
+
             System.Windows.Application.Current.Dispatcher.Invoke((ThreadStart)delegate
             {
                 input.Close();
             });
-            return (input.LastClickX, input.LastClickY);
+            return result;
         }
     }
 }
