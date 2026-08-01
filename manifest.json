@@ -3,6 +3,10 @@
     {
       "version": "2.9.2",
       "url": "https://github.com/SaviorDT/getFish/releases/download/V2.9/V2.9.exe"
+    },
+    {
+      "version": "2.10.0",
+      "url": "https://github.com/SaviorDT/getFish/releases/download/V2.10/getFish-2.10.exe"
     }
   ]
 }
