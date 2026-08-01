@@ -96,6 +96,9 @@
     <Compile Include="FileManager\FileActionPerformer.cs" />
     <Compile Include="FileManager\UserSettings.cs" />
     <Compile Include="structures\Point.cs" />
+    <Compile Include="Updater\AppVersion.cs" />
+    <Compile Include="Updater\Manifest.cs" />
+    <Compile Include="Updater\UpdateManager.cs" />
     <Compile Include="ToolToProgram\KeyboardInput.cs" />
     <Compile Include="ToolToProgram\MoleProgram.cs" />
     <Compile Include="ToolToProgram\ProgramAttributes.cs" />
@@ -118,6 +121,9 @@
     </Compile>
     <Compile Include="UserInterface\ProcessSelectWindow.xaml.cs">
       <DependentUpon>ProcessSelectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UpdateSettingsWindow.xaml.cs">
+      <DependentUpon>UpdateSettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\UserInput.cs" />
     <Page Include="MainWindow.xaml">
@@ -151,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\ProcessSelectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\UpdateSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,6 +19,7 @@ using 撈金魚.Analyzer;
 using 撈金魚.FileManager;
 using 撈金魚.structures;
 using 撈金魚.ToolToProgram;
+using 撈金魚.Updater;
 using 撈金魚.UserInterface;
 using static 撈金魚.ActionPerform.ButtonPerformer;
 using static 撈金魚.ActionPerform.Common.MapMove;
@@ -37,6 +38,7 @@ namespace 撈金魚
         private AllSettings user_settings = UserSettings.Load();
         private readonly List<AccountDatum> account_data = AccountDataLoader.Load();
         private readonly MoMoTreeSetting momo_tree;
+        private readonly UpdateSettingsWindow update_settings_window;
 
         private void PlayFishButton(object sender, RoutedEventArgs _)
         {
@@ -51,6 +53,17 @@ namespace 撈金魚
 
             window = new GetProgramWindow(string.IsNullOrEmpty(user_settings.ProcessName) ? DEFAULT_PROCESS_NAME : user_settings.ProcessName);
             momo_tree = new MoMoTreeSetting(window, user_settings.Momo);
+            update_settings_window = new UpdateSettingsWindow(user_settings);
+            CheckForUpdateOnStartup();
+        }
+
+        private void CheckForUpdateOnStartup()
+        {
+            if (!user_settings.AutoUpdate)
+                return;
+            ManifestEntry update = UpdateManager.CheckForUpdate();
+            if (update != null)
+                UpdateManager.SchedulePendingUpdate(update.Version, update.Url, isAutomatic: true);
         }
 
         private void ClosingAction(object sender, CancelEventArgs _)
@@ -58,6 +71,8 @@ namespace 撈金魚
             //the default closing action may not actually stop the program
             //Which only close the window and work in background until your threads are done.
             UserSettings.Save(user_settings);
+            if (UpdateManager.HasPendingUpdate && (!UpdateManager.PendingUpdateIsAutomatic || user_settings.AutoUpdate))
+                UpdateManager.DownloadAndInstall(UpdateManager.PendingUpdateUrl);
             Environment.Exit(0);
         }
 
@@ -251,6 +266,12 @@ namespace 撈金魚
                 window.SetProcessName(select_window.SelectedProcessName);
                 UserInterface.Message.ShowMessageToUser("已選擇");
             }
+        }
+
+        private void UpdateSettingButton(object sender, RoutedEventArgs e)
+        {
+            update_settings_window.Show();
+            update_settings_window.Activate();
         }
     }
 }

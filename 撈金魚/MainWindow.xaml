@@ -148,5 +148,6 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
+        <Button Content="更新設定" HorizontalAlignment="Left" Margin="647,297,0,0" VerticalAlignment="Top" Height="30" Width="90" Click="UpdateSettingButton" ToolTip="自動更新設定、目前版本、手動檢查更新"/>
     </Grid>
 </Window>

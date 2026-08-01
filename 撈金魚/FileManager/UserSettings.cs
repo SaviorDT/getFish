@@ -35,10 +35,13 @@ namespace 撈金魚.FileManager
         public int Dragon { get; set; }
         [JsonPropertyName("process_name")]
         public string ProcessName { get; set; }
+        [JsonPropertyName("auto_update")]
+        public bool AutoUpdate { get; set; }
         public AllSettings()
         {
             Counts = new CountSettings();
             Momo = new MoMoTreeSettings();
+            AutoUpdate = true;
         }
     }
     internal class UserSettings
