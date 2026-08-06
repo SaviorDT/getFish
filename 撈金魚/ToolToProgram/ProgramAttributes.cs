@@ -34,7 +34,7 @@ namespace 撈金魚.ToolToProgram
         public static WindowRect GetContentRect(Process process, bool check_white_edge = true)
         {
             WindowRect toReturn = new();
-            if(process == null)
+            if(process == null || process.MainWindowHandle == IntPtr.Zero)
             {
                 toReturn.is_enable = false;
                 toReturn.top = toReturn.bottom  = toReturn.left = toReturn.right = 0;
