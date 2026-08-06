@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using WindowsInput;
@@ -39,6 +40,8 @@ namespace 撈金魚
         private readonly List<AccountDatum> account_data = AccountDataLoader.Load();
         private readonly MoMoTreeSetting momo_tree;
         private readonly UpdateSettingsWindow update_settings_window;
+        //started immediately so the network round-trip overlaps with window construction/layout instead of blocking either
+        private readonly Task<ManifestEntry> pending_update_check;
 
         private void PlayFishButton(object sender, RoutedEventArgs _)
         {
@@ -50,20 +53,23 @@ namespace 撈金魚
         {
             InitializeComponent();
             InitializeGlobalHook();
+            Loaded += MainWindow_Loaded;
 
             window = new GetProgramWindow(string.IsNullOrEmpty(user_settings.ProcessName) ? DEFAULT_PROCESS_NAME : user_settings.ProcessName);
             momo_tree = new MoMoTreeSetting(window, user_settings.Momo);
             update_settings_window = new UpdateSettingsWindow(user_settings);
-            CheckForUpdateOnStartup();
+            pending_update_check = user_settings.AutoUpdate ? Task.Run(() => UpdateManager.CheckForUpdate()) : null;
         }
 
-        private void CheckForUpdateOnStartup()
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!user_settings.AutoUpdate)
+            //owner guarantees this window can never be covered by MainWindow, regardless of whether an update was found
+            update_settings_window.Owner = this;
+            if (pending_update_check == null)
                 return;
-            ManifestEntry update = UpdateManager.CheckForUpdate();
+            ManifestEntry update = await pending_update_check;
             if (update != null)
-                UpdateManager.SchedulePendingUpdate(update.Version, update.Url, isAutomatic: true);
+                update_settings_window.NotifyUpdateAvailable(update);
         }
 
         private void ClosingAction(object sender, CancelEventArgs _)

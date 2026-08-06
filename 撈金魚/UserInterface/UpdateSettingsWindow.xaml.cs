@@ -73,5 +73,15 @@ namespace 撈金魚.UserInterface
             status_text.Text = "已略過此版本";
             update_choice_panel.Visibility = Visibility.Collapsed;
         }
+
+        //called from MainWindow's startup check; reuses the same panel and button handlers as the manual check
+        internal void NotifyUpdateAvailable(ManifestEntry update)
+        {
+            found_update = update;
+            status_text.Text = $"發現新版本 {update.Version}";
+            update_choice_panel.Visibility = Visibility.Visible;
+            Show();
+            Activate();
+        }
     }
 }
