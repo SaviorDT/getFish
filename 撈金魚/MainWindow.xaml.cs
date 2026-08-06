@@ -63,8 +63,6 @@ namespace 撈金魚
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //owner guarantees this window can never be covered by MainWindow, regardless of whether an update was found
-            update_settings_window.Owner = this;
             if (pending_update_check == null)
                 return;
             ManifestEntry update = await pending_update_check;
